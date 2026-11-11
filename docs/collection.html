@@ -58,6 +58,17 @@
 
 <p>A payment request tells Paga to collect a specific amount from a specific customer. How the customer pays is up to you: a one-time virtual account number, a USSD prompt, their Paga wallet, or a USD bank transfer.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-create-payment">Create a payment request</a></li>
+    <li><a href="#op-get-payment-status">Check payment status</a></li>
+    <li><a href="#op-get-collect-banks">List the customer's banks</a></li>
+    <li><a href="#op-get-usd-payment-status">Check USD payment status</a></li>
+    <li><a href="#op-get-payment-request-history">Payment request history</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-create-payment" data-operation="create-payment">
   <div class="op-header">
@@ -66,7 +77,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /paymentRequest</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/paymentRequest</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + payer.phoneNumber + payer.email</span>
   </div>
@@ -75,15 +86,15 @@
 <li><code>payer.email</code> takes part in the hash even when you omit it.</li></ul>
   <h4>Python</h4>
   <p><code>create_payment</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-payment" type="button">Copy</button><pre><code id="code-python-create-payment" class="language-python">payment = await client.create_payment(
-    reference_number=&quot;ORD-2026-0187&quot;,
-    amount=50,
-    payer_name=&quot;Bello Ramon&quot;,
-    payer_phone_number=&quot;08064343187&quot;,
-    payee_name=&quot;Your business name&quot;,
-    payer_email=&quot;customer@example.com&quot;,
-    call_back_url=&quot;https://yourstore.com/webhooks/paga&quot;,
-    payment_methods=[&quot;BANK_TRANSFER&quot;],
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-payment" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-payment" class="language-python">payment = <span class="tok-kw">await</span> client.<span class="tok-fn">create_payment</span>(
+    reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    amount=<span class="tok-num">50</span>,
+    payer_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    payer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    payee_name=<span class="tok-str">&quot;Your business name&quot;</span>,
+    payer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    call_back_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
+    payment_methods=[<span class="tok-str">&quot;BANK_TRANSFER&quot;</span>],
 )</code></pre></div>
 </article>
 
@@ -94,7 +105,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -102,9 +113,9 @@
   <ul><li><code>data.statusCode</code> of <code>&quot;0&quot;</code> means the payment was paid.</li></ul>
   <h4>Python</h4>
   <p><code>get_payment_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-payment-status" type="button">Copy</button><pre><code id="code-python-get-payment-status" class="language-python">status = await client.get_payment_status(reference_number=&quot;ORD-2026-0187&quot;)
-if status.data and status.data.statusCode == &quot;0&quot;:
-    print(&quot;paid&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-payment-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-payment-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_payment_status</span>(reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>)
+<span class="tok-kw">if</span> status.data <span class="tok-kw">and</span> status.data.statusCode == <span class="tok-str">&quot;0&quot;</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;paid&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-collect-banks" data-operation="get-collect-banks">
@@ -114,7 +125,7 @@ if status.data and status.data.statusCode == &quot;0&quot;:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /banks</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/banks</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -122,9 +133,9 @@ if status.data and status.data.statusCode == &quot;0&quot;:
   
   <h4>Python</h4>
   <p><code>get_collect_banks</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-collect-banks" type="button">Copy</button><pre><code id="code-python-get-collect-banks" class="language-python">banks = await client.get_collect_banks(reference_number=&quot;REF-000001&quot;)
-for bank in banks.banks or []:
-    print(bank.name, bank.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-collect-banks" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-collect-banks" class="language-python">banks = <span class="tok-kw">await</span> client.<span class="tok-fn">get_collect_banks</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> bank <span class="tok-kw">in</span> banks.banks <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(bank.name, bank.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-usd-payment-status" data-operation="get-usd-payment-status">
@@ -134,7 +145,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + paymentCurrency</span>
   </div>
@@ -142,9 +153,9 @@ for bank in banks.banks or []:
   <ul><li><code>data.statusCode</code> of <code>&quot;1&quot;</code> means the payment is still pending.</li></ul>
   <h4>Python</h4>
   <p><code>get_usd_payment_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-usd-payment-status" type="button">Copy</button><pre><code id="code-python-get-usd-payment-status" class="language-python">status = await client.get_usd_payment_status(
-    reference_number=&quot;ORD-2026-0187&quot;,
-    payment_currency=&quot;USD&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-usd-payment-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-usd-payment-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_usd_payment_status</span>(
+    reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    payment_currency=<span class="tok-str">&quot;USD&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -155,7 +166,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /history</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/history</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -163,7 +174,7 @@ for bank in banks.banks or []:
   
   <h4>Python</h4>
   <p><code>get_payment_request_history</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-payment-request-history" type="button">Copy</button><pre><code id="code-python-get-payment-request-history" class="language-python">history = await client.get_payment_request_history(reference_number=&quot;REF-000001&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-payment-request-history" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-payment-request-history" class="language-python">history = <span class="tok-kw">await</span> client.<span class="tok-fn">get_payment_request_history</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)</code></pre></div>
 </article>
 
 <h2 id="next">Next</h2>

@@ -58,6 +58,16 @@
 
 <p>Bill payment takes a customer's account number, confirms it with the biller, and pays. Find the biller, pick the service, validate the customer, then pay.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-get-merchants">List billers</a></li>
+    <li><a href="#op-get-merchant-services">List a biller's services</a></li>
+    <li><a href="#op-get-merchant-account-details">Validate the customer</a></li>
+    <li><a href="#op-pay-bill">Pay the bill</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-get-merchants" data-operation="get-merchants">
   <div class="op-header">
@@ -66,7 +76,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchants</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchants</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -74,9 +84,9 @@
   
   <h4>Python</h4>
   <p><code>get_merchants</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchants" type="button">Copy</button><pre><code id="code-python-get-merchants" class="language-python">merchants = await client.get_merchants(reference_number=&quot;REF-000001&quot;)
-for merchant in merchants.merchants or []:
-    print(merchant.displayName, merchant.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchants" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchants" class="language-python">merchants = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchants</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> merchant <span class="tok-kw">in</span> merchants.merchants <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(merchant.displayName, merchant.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-merchant-services" data-operation="get-merchant-services">
@@ -86,7 +96,7 @@ for merchant in merchants.merchants or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchantServices</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchantServices</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + merchantPublicId</span>
   </div>
@@ -95,9 +105,9 @@ for merchant in merchants.merchants or []:
 <li>A service with <code>price</code> <code>0.0</code> means the customer chooses the amount; otherwise pay the service's <code>price</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_merchant_services</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchant-services" type="button">Copy</button><pre><code id="code-python-get-merchant-services" class="language-python">services = await client.get_merchant_services(
-    reference_number=&quot;REF-000001&quot;,
-    merchant_public_id=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchant-services" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchant-services" class="language-python">services = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchant_services</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    merchant_public_id=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -108,7 +118,7 @@ for merchant in merchants.merchants or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchantAccountDetails</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchantAccountDetails</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + merchantAccount + merchantReferenceNumber + merchantServiceProductCode</span>
   </div>
@@ -117,12 +127,12 @@ for merchant in merchants.merchants or []:
 <li>Billers that don't need it still take part in the hash — send <code>&quot;&quot;</code> when there is no service.</li></ul>
   <h4>Python</h4>
   <p><code>get_merchant_account_details</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchant-account-details" type="button">Copy</button><pre><code id="code-python-get-merchant-account-details" class="language-python">customer = await client.get_merchant_account_details(
-    reference_number=&quot;REF-000001&quot;,
-    merchant_account=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
-    merchant_reference_number=&quot;8110411076&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchant-account-details" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchant-account-details" class="language-python">customer = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchant_account_details</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    merchant_account=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
+    merchant_reference_number=<span class="tok-str">&quot;8110411076&quot;</span>,
 )
-print(customer.customerName)</code></pre></div>
+<span class="tok-bi">print</span>(customer.customerName)</code></pre></div>
 </article>
 
 <article class="op" id="op-pay-bill" data-operation="pay-bill">
@@ -132,7 +142,7 @@ print(customer.customerName)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /merchantPayment</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/merchantPayment</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + merchantAccount + merchantReferenceNumber</span>
   </div>
@@ -141,15 +151,15 @@ print(customer.customerName)</code></pre></div>
 <li><code>integrationStatus</code> is for information only.</li></ul>
   <h4>Python</h4>
   <p><code>pay_bill</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-pay-bill" type="button">Copy</button><pre><code id="code-python-pay-bill" class="language-python">bill = await client.pay_bill(
-    reference_number=&quot;BILL-2026-0042&quot;,
-    amount=6000,
-    merchant_account=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
-    merchant_reference_number=&quot;8110411076&quot;,
-    merchant_service=[&quot;STARTERE36&quot;],
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-pay-bill" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-pay-bill" class="language-python">bill = <span class="tok-kw">await</span> client.<span class="tok-fn">pay_bill</span>(
+    reference_number=<span class="tok-str">&quot;BILL-2026-0042&quot;</span>,
+    amount=<span class="tok-num">6000</span>,
+    merchant_account=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
+    merchant_reference_number=<span class="tok-str">&quot;8110411076&quot;</span>,
+    merchant_service=[<span class="tok-str">&quot;STARTERE36&quot;</span>],
 )
-if bill.responseCode == 0:
-    print(&quot;paid&quot;)</code></pre></div>
+<span class="tok-kw">if</span> bill.responseCode == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;paid&quot;</span>)</code></pre></div>
 </article>
 
 <h2 id="next">Next</h2>

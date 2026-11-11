@@ -58,6 +58,16 @@
 
 <p>Registering a customer opens a Paga account for them on your business account. The KYC variants upload photographs as well.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-register-customer">Register a customer</a></li>
+    <li><a href="#op-register-customer-with-kyc">Register a customer with KYC</a></li>
+    <li><a href="#op-register-customer-account-photo">Upload a customer account photo</a></li>
+    <li><a href="#op-register-customer-identification">Upload a customer identification</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-register-customer" data-operation="register-customer">
   <div class="op-header">
@@ -66,7 +76,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerFirstName + customerLastName</span>
   </div>
@@ -74,13 +84,13 @@
   <ul><li>The phone number must not already belong to a registered customer.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer" type="button">Copy</button><pre><code id="code-python-register-customer" class="language-python">customer = await client.register_customer(
-    reference_number=&quot;REF-000010&quot;,
-    customer_phone_number=&quot;08064343187&quot;,
-    customer_first_name=&quot;Bello&quot;,
-    customer_last_name=&quot;Ramon&quot;,
-    customer_email=&quot;customer@example.com&quot;,
-    customer_date_of_birth=&quot;1989-10-02&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer" class="language-python">customer = <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer</span>(
+    reference_number=<span class="tok-str">&quot;REF-000010&quot;</span>,
+    customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    customer_first_name=<span class="tok-str">&quot;Bello&quot;</span>,
+    customer_last_name=<span class="tok-str">&quot;Ramon&quot;</span>,
+    customer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    customer_date_of_birth=<span class="tok-str">&quot;1989-10-02&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -91,7 +101,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerWithKYC</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerWithKYC</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerFirstName + customerLastName</span>
   </div>
@@ -100,17 +110,17 @@
 <li>Each photograph must be a JPEG of at most 500 KB.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_with_kyc</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-with-kyc" type="button">Copy</button><pre><code id="code-python-register-customer-with-kyc" class="language-python">with open(&quot;account-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    customer = await client.register_customer_with_kyc(
-        reference_number=&quot;REF-000011&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_email=&quot;customer@example.com&quot;,
-        customer_first_name=&quot;Bello&quot;,
-        customer_last_name=&quot;Ramon&quot;,
-        customer_date_of_birth=&quot;1989-10-02&quot;,
-        customer_gender=&quot;MALE&quot;,
-        customer_account_photo=photo.read(),
-        customer_id_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-with-kyc" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-with-kyc" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;account-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    customer = <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_with_kyc</span>(
+        reference_number=<span class="tok-str">&quot;REF-000011&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+        customer_first_name=<span class="tok-str">&quot;Bello&quot;</span>,
+        customer_last_name=<span class="tok-str">&quot;Ramon&quot;</span>,
+        customer_date_of_birth=<span class="tok-str">&quot;1989-10-02&quot;</span>,
+        customer_gender=<span class="tok-str">&quot;MALE&quot;</span>,
+        customer_account_photo=photo.<span class="tok-fn">read</span>(),
+        customer_id_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 
@@ -121,7 +131,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerAccountPhoto</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerAccountPhoto</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber</span>
   </div>
@@ -130,11 +140,11 @@
 <li>The photograph must be a JPEG of at most 500 KB.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_account_photo</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-account-photo" type="button">Copy</button><pre><code id="code-python-register-customer-account-photo" class="language-python">with open(&quot;account-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    await client.register_customer_account_photo(
-        reference_number=&quot;REF-000012&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_account_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-account-photo" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-account-photo" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;account-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_account_photo</span>(
+        reference_number=<span class="tok-str">&quot;REF-000012&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_account_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 
@@ -145,7 +155,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerIdentification</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerIdentification</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerIdType + customerIdNumber + customerIdExpirationDate</span>
   </div>
@@ -154,14 +164,14 @@
 <li><code>customerIdExpirationDate</code> is formatted as <code>YYYY-MM-DD</code>.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_identification</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-identification" type="button">Copy</button><pre><code id="code-python-register-customer-identification" class="language-python">with open(&quot;id-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    await client.register_customer_identification(
-        reference_number=&quot;REF-000013&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_id_type=&quot;NATIONAL_ID&quot;,
-        customer_id_number=&quot;12345678901&quot;,
-        customer_id_expiration_date=&quot;2030-01-01&quot;,
-        customer_id_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-identification" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-identification" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;id-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_identification</span>(
+        reference_number=<span class="tok-str">&quot;REF-000013&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_id_type=<span class="tok-str">&quot;NATIONAL_ID&quot;</span>,
+        customer_id_number=<span class="tok-str">&quot;12345678901&quot;</span>,
+        customer_id_expiration_date=<span class="tok-str">&quot;2030-01-01&quot;</span>,
+        customer_id_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 

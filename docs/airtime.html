@@ -58,6 +58,15 @@
 
 <p>Buy airtime or data for a phone number from your business balance. For data, pick the bundle first — the amount must match the bundle's price exactly.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-get-mobile-operators">List mobile operators</a></li>
+    <li><a href="#op-get-data-bundles">List data bundles</a></li>
+    <li><a href="#op-buy-airtime">Buy airtime or data</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-get-mobile-operators" data-operation="get-mobile-operators">
   <div class="op-header">
@@ -66,7 +75,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMobileOperators</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMobileOperators</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -75,9 +84,9 @@
 <li>Cache the list.</li></ul>
   <h4>Python</h4>
   <p><code>get_mobile_operators</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-mobile-operators" type="button">Copy</button><pre><code id="code-python-get-mobile-operators" class="language-python">operators = await client.get_mobile_operators(reference_number=&quot;REF-000001&quot;)
-for operator in operators.mobileOperator or []:
-    print(operator.name, operator.mobileOperatorCode)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-mobile-operators" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-mobile-operators" class="language-python">operators = <span class="tok-kw">await</span> client.<span class="tok-fn">get_mobile_operators</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> operator <span class="tok-kw">in</span> operators.mobileOperator <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(operator.name, operator.mobileOperatorCode)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-data-bundles" data-operation="get-data-bundles">
@@ -87,7 +96,7 @@ for operator in operators.mobileOperator or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getDataBundleByOperator</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getDataBundleByOperator</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + operatorPublicId</span>
   </div>
@@ -96,9 +105,9 @@ for operator in operators.mobileOperator or []:
 <li>Bundles rarely change, so cache the list and refresh it monthly.</li></ul>
   <h4>Python</h4>
   <p><code>get_data_bundles</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-data-bundles" type="button">Copy</button><pre><code id="code-python-get-data-bundles" class="language-python">bundles = await client.get_data_bundles(
-    reference_number=&quot;REF-000001&quot;,
-    operator_public_id=&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-data-bundles" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-data-bundles" class="language-python">bundles = <span class="tok-kw">await</span> client.<span class="tok-fn">get_data_bundles</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    operator_public_id=<span class="tok-str">&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -109,7 +118,7 @@ for operator in operators.mobileOperator or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /airtimePurchase</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/airtimePurchase</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationPhoneNumber</span>
   </div>
@@ -118,11 +127,11 @@ for operator in operators.mobileOperator or []:
 <li>For a data bundle, <code>amount</code> must be exactly the bundle's <code>servicePrice</code>.</li></ul>
   <h4>Python</h4>
   <p><code>buy_airtime</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-buy-airtime" type="button">Copy</button><pre><code id="code-python-buy-airtime" class="language-python">purchase = await client.buy_airtime(
-    reference_number=&quot;AIR-2026-0042&quot;,
-    amount=&quot;500&quot;,
-    destination_phone_number=&quot;08063332187&quot;,
-    mobile_operator_public_id=&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-buy-airtime" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-buy-airtime" class="language-python">purchase = <span class="tok-kw">await</span> client.<span class="tok-fn">buy_airtime</span>(
+    reference_number=<span class="tok-str">&quot;AIR-2026-0042&quot;</span>,
+    amount=<span class="tok-str">&quot;500&quot;</span>,
+    destination_phone_number=<span class="tok-str">&quot;08063332187&quot;</span>,
+    mobile_operator_public_id=<span class="tok-str">&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;</span>,
 )</code></pre></div>
 </article>
 

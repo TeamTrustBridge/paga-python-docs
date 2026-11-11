@@ -61,6 +61,21 @@
   <p>Verify the signature before you act on a callback. Then de-duplicate: Paga retries until you answer, so the same callback will arrive more than once.</p>
 </div>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-checkout-notification">Checkout payment notification</a></li>
+    <li><a href="#op-payment-callback">Dynamic virtual account callback</a></li>
+    <li><a href="#op-funding-notification">Subsidiary account funding notification</a></li>
+    <li><a href="#op-subsidiary-operation">Subsidiary charge, top-up or transfer callback</a></li>
+    <li><a href="#op-money-transfer-notification">Money transfer notification</a></li>
+    <li><a href="#op-persistent-payment-account">Persistent payment account callback</a></li>
+    <li><a href="#op-mandate-callback">Direct Debit mandate callback</a></li>
+    <li><a href="#op-charge-callback">Direct Debit charge callback</a></li>
+    <li><a href="#op-usd-payment-webhook">USD (ACH, Wire and Swift) payment webhook</a></li>
+  </ul>
+</nav>
+
 <h2 id="callbacks">Callbacks</h2>
 <article class="op" id="op-checkout-notification" data-operation="checkout-notification">
   <div class="op-header">
@@ -76,7 +91,7 @@
   <ul><li>De-duplicate on the payment reference.</li></ul>
   <h4>Python</h4>
   <p><code>verify_checkout_notification</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-checkout-notification" type="button">Copy</button><pre><code id="code-python-checkout-notification" class="language-python">ok = verify_checkout_notification(payload, received_hash, hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-checkout-notification" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-checkout-notification" class="language-python">ok = <span class="tok-fn">verify_checkout_notification</span>(payload, received_hash, hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-payment-callback" data-operation="payment-callback">
@@ -94,7 +109,7 @@
 <li>De-duplicate on <code>notificationId</code>.</li></ul>
   <h4>Python</h4>
   <p><code>verify_payment_callback</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-payment-callback" type="button">Copy</button><pre><code id="code-python-payment-callback" class="language-python">ok = verify_payment_callback(payload, received_hash, hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-payment-callback" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-payment-callback" class="language-python">ok = <span class="tok-fn">verify_payment_callback</span>(payload, received_hash, hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-funding-notification" data-operation="funding-notification">
@@ -111,7 +126,7 @@
   <ul><li>The hash travels in the <code>x-paga-hash-v3</code> header, not the body.</li></ul>
   <h4>Python</h4>
   <p><code>verify_funding_notification</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-funding-notification" type="button">Copy</button><pre><code id="code-python-funding-notification" class="language-python">ok = verify_funding_notification(payload, received_hash, hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-funding-notification" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-funding-notification" class="language-python">ok = <span class="tok-fn">verify_funding_notification</span>(payload, received_hash, hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-subsidiary-operation" data-operation="subsidiary-operation">
@@ -129,7 +144,7 @@
 <li>A transfer sends one callback, for the source account only.</li></ul>
   <h4>Python</h4>
   <p><code>verify_subsidiary_operation</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-subsidiary-operation" type="button">Copy</button><pre><code id="code-python-subsidiary-operation" class="language-python">ok = verify_subsidiary_operation(payload, received_hash, hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-subsidiary-operation" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-subsidiary-operation" class="language-python">ok = <span class="tok-fn">verify_subsidiary_operation</span>(payload, received_hash, hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-money-transfer-notification" data-operation="money-transfer-notification">
@@ -148,7 +163,7 @@
 <li>De-duplicate on <code>referenceNumber</code>.</li></ul>
   <h4>Python</h4>
   <p><code>verify_money_transfer_notification</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-money-transfer-notification" type="button">Copy</button><pre><code id="code-python-money-transfer-notification" class="language-python">ok = verify_money_transfer_notification(payload, request.headers[&quot;x-paga-hash&quot;], hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-money-transfer-notification" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-money-transfer-notification" class="language-python">ok = <span class="tok-fn">verify_money_transfer_notification</span>(payload, request.headers[<span class="tok-str">&quot;x-paga-hash&quot;</span>], hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-persistent-payment-account" data-operation="persistent-payment-account">
@@ -166,7 +181,7 @@
 <li>The <code>x-paga-hash</code> header signs <code>transactionReference + accountNumber + amount</code> instead.</li></ul>
   <h4>Python</h4>
   <p><code>verify_persistent_payment_account_callback</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-persistent-payment-account" class="language-python">ok = verify_persistent_payment_account_callback(payload, received_hash, hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-persistent-payment-account" class="language-python">ok = <span class="tok-fn">verify_persistent_payment_account_callback</span>(payload, received_hash, hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-mandate-callback" data-operation="mandate-callback">
@@ -184,7 +199,7 @@
 <li>De-duplicate on <code>notificationId</code>.</li></ul>
   <h4>Python</h4>
   <p><code>verify_mandate_callback</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-mandate-callback" type="button">Copy</button><pre><code id="code-python-mandate-callback" class="language-python">ok = verify_mandate_callback(payload, payload[&quot;hash&quot;], hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-mandate-callback" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-mandate-callback" class="language-python">ok = <span class="tok-fn">verify_mandate_callback</span>(payload, payload[<span class="tok-str">&quot;hash&quot;</span>], hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-charge-callback" data-operation="charge-callback">
@@ -202,7 +217,7 @@
 <li>Decide on <code>statusCode</code>, and look up any non-zero code.</li></ul>
   <h4>Python</h4>
   <p><code>verify_charge_callback</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-charge-callback" type="button">Copy</button><pre><code id="code-python-charge-callback" class="language-python">ok = verify_charge_callback(payload, payload[&quot;hash&quot;], hash_key)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-charge-callback" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-charge-callback" class="language-python">ok = <span class="tok-fn">verify_charge_callback</span>(payload, payload[<span class="tok-str">&quot;hash&quot;</span>], hash_key)</code></pre></div>
 </article>
 
 <article class="op" id="op-usd-payment-webhook" data-operation="usd-payment-webhook">
@@ -220,8 +235,8 @@
 <li>De-duplicate on <code>referenceNumber</code> plus <code>paymentId</code>.</li></ul>
   <h4>Python</h4>
   <p><code>parse_usd_payment_webhook</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-usd-payment-webhook" type="button">Copy</button><pre><code id="code-python-usd-payment-webhook" class="language-python">webhook = parse_usd_payment_webhook(payload)
-if webhook.isCaptured:
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-usd-payment-webhook" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-usd-payment-webhook" class="language-python">webhook = <span class="tok-fn">parse_usd_payment_webhook</span>(payload)
+<span class="tok-kw">if</span> webhook.isCaptured:
     ...</code></pre></div>
 </article>
 

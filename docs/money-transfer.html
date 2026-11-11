@@ -58,6 +58,18 @@
 
 <p>A money transfer moves money from your business balance to somebody else. You can validate the destination first, send in bulk, and check the status afterwards.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-get-banks">List institutions you can pay</a></li>
+    <li><a href="#op-validate-deposit-to-bank">Validate the destination account</a></li>
+    <li><a href="#op-send-money">Send money to a bank account</a></li>
+    <li><a href="#op-transfer-to-paga-wallet">Send money to a Paga wallet</a></li>
+    <li><a href="#op-validate-money-transfer">Validate a Paga wallet transfer</a></li>
+    <li><a href="#op-send-bulk-money-transfer">Bulk money transfer</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-get-banks" data-operation="get-banks">
   <div class="op-header">
@@ -66,7 +78,7 @@
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getBanks</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getBanks</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -75,9 +87,9 @@
 <li>To send to a Paga wallet, use Paga's UUID <code>AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_banks</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-banks" type="button">Copy</button><pre><code id="code-python-get-banks" class="language-python">banks = await client.get_banks(reference_number=&quot;REF-000001&quot;)
-for bank in banks.banks or []:
-    print(bank.name, bank.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-banks" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-banks" class="language-python">banks = <span class="tok-kw">await</span> client.<span class="tok-fn">get_banks</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> bank <span class="tok-kw">in</span> banks.banks <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(bank.name, bank.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-validate-deposit-to-bank" data-operation="validate-deposit-to-bank">
@@ -87,7 +99,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /validateDepositToBank</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/validateDepositToBank</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationBankUUID + destinationBankAccountNumber</span>
   </div>
@@ -95,13 +107,13 @@ for bank in banks.banks or []:
   <ul><li>Send <code>amount</code> exactly as you will send it later: <code>&quot;5000.00&quot;</code> and <code>&quot;5000&quot;</code> sign differently.</li></ul>
   <h4>Python</h4>
   <p><code>validate_deposit_to_bank</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-validate-deposit-to-bank" type="button">Copy</button><pre><code id="code-python-validate-deposit-to-bank" class="language-python">validation = await client.validate_deposit_to_bank(
-    reference_number=&quot;REF-000002&quot;,
-    amount=&quot;5000.00&quot;,
-    destination_bank_uuid=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    destination_bank_account_number=&quot;0000000000&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-validate-deposit-to-bank" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-validate-deposit-to-bank" class="language-python">validation = <span class="tok-kw">await</span> client.<span class="tok-fn">validate_deposit_to_bank</span>(
+    reference_number=<span class="tok-str">&quot;REF-000002&quot;</span>,
+    amount=<span class="tok-str">&quot;5000.00&quot;</span>,
+    destination_bank_uuid=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    destination_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
 )
-print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre></div>
+<span class="tok-bi">print</span>(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre></div>
 </article>
 
 <article class="op" id="op-send-money" data-operation="send-money">
@@ -111,7 +123,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /depositToBank</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/depositToBank</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationBankUUID + destinationBankAccountNumber</span>
   </div>
@@ -120,12 +132,12 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
 <li>There is no callback for the outcome; use the transaction status endpoint.</li></ul>
   <h4>Python</h4>
   <p><code>send_money</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-send-money" type="button">Copy</button><pre><code id="code-python-send-money" class="language-python">transfer = await client.send_money(
-    reference_number=&quot;PAY-2026-0311&quot;,
-    amount=&quot;5000.00&quot;,
-    destination_bank_uuid=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    destination_bank_account_number=&quot;0000000000&quot;,
-    remarks=&quot;Salary for June&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-send-money" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-send-money" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">send_money</span>(
+    reference_number=<span class="tok-str">&quot;PAY-2026-0311&quot;</span>,
+    amount=<span class="tok-str">&quot;5000.00&quot;</span>,
+    destination_bank_uuid=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    destination_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
+    remarks=<span class="tok-str">&quot;Salary for June&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -136,7 +148,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /moneyTransfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/moneyTransfer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount</span>
   </div>
@@ -144,10 +156,10 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   <ul><li><code>referenceNumber</code> must be at most 50 characters.</li></ul>
   <h4>Python</h4>
   <p><code>transfer_to_paga_wallet</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-transfer-to-paga-wallet" type="button">Copy</button><pre><code id="code-python-transfer-to-paga-wallet" class="language-python">transfer = await client.transfer_to_paga_wallet(
-    reference_number=&quot;PAY-2026-0312&quot;,
-    amount=5000,
-    destination_account=&quot;08064343187&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-transfer-to-paga-wallet" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-transfer-to-paga-wallet" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">transfer_to_paga_wallet</span>(
+    reference_number=<span class="tok-str">&quot;PAY-2026-0312&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    destination_account=<span class="tok-str">&quot;08064343187&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -158,7 +170,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /validateMoneyTransfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/validateMoneyTransfer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount</span>
   </div>
@@ -166,12 +178,12 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   
   <h4>Python</h4>
   <p><code>validate_money_transfer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-validate-money-transfer" type="button">Copy</button><pre><code id="code-python-validate-money-transfer" class="language-python">validation = await client.validate_money_transfer(
-    reference_number=&quot;REF-000003&quot;,
-    amount=5000,
-    destination_account=&quot;08064343187&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-validate-money-transfer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-validate-money-transfer" class="language-python">validation = <span class="tok-kw">await</span> client.<span class="tok-fn">validate_money_transfer</span>(
+    reference_number=<span class="tok-str">&quot;REF-000003&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    destination_account=<span class="tok-str">&quot;08064343187&quot;</span>,
 )
-print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
+<span class="tok-bi">print</span>(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
 </article>
 
 <article class="op" id="op-send-bulk-money-transfer" data-operation="send-bulk-money-transfer">
@@ -181,7 +193,7 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /moneyTransferBulk</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/moneyTransferBulk</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount + itemCount</span>
   </div>
@@ -190,20 +202,20 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
 <li>A bulk transfer can partially succeed, so check every entry in <code>results</code>.</li></ul>
   <h4>Python</h4>
   <p><code>send_bulk_money_transfer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-send-bulk-money-transfer" type="button">Copy</button><pre><code id="code-python-send-bulk-money-transfer" class="language-python">bulk = await client.send_bulk_money_transfer(
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-send-bulk-money-transfer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-send-bulk-money-transfer" class="language-python">bulk = <span class="tok-kw">await</span> client.<span class="tok-fn">send_bulk_money_transfer</span>(
     items=[
         {
-            &quot;referenceNumber&quot;: &quot;ITEM-1&quot;,
-            &quot;amount&quot;: 100,
-            &quot;destinationAccount&quot;: &quot;08064343187&quot;,
+            <span class="tok-str">&quot;referenceNumber&quot;</span>: <span class="tok-str">&quot;ITEM-1&quot;</span>,
+            <span class="tok-str">&quot;amount&quot;</span>: <span class="tok-num">100</span>,
+            <span class="tok-str">&quot;destinationAccount&quot;</span>: <span class="tok-str">&quot;08064343187&quot;</span>,
         },
         {
-            &quot;referenceNumber&quot;: &quot;ITEM-2&quot;,
-            &quot;amount&quot;: 200,
-            &quot;destinationAccount&quot;: &quot;08064343188&quot;,
+            <span class="tok-str">&quot;referenceNumber&quot;</span>: <span class="tok-str">&quot;ITEM-2&quot;</span>,
+            <span class="tok-str">&quot;amount&quot;</span>: <span class="tok-num">200</span>,
+            <span class="tok-str">&quot;destinationAccount&quot;</span>: <span class="tok-str">&quot;08064343188&quot;</span>,
         },
     ],
-    bulk_reference_number=&quot;BULK-2026-0001&quot;,
+    bulk_reference_number=<span class="tok-str">&quot;BULK-2026-0001&quot;</span>,
 )</code></pre></div>
 </article>
 

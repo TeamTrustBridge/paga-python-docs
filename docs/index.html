@@ -53,8 +53,15 @@
     <button class="button" data-theme-toggle type="button" aria-label="Toggle the colour theme">☾</button>
   </div>
   <main class="content" id="main">
+<div class="hero">
+<p class="hero-eyebrow">Unofficial community SDK</p>
 <h1>paga-python</h1>
-<p class="lead">Unofficial async Python SDK for the <a href="https://developer-docs.paga.com/">Paga Engine API</a>.</p>
+<p class="hero-lead">Async Python SDK for the <a href="https://developer-docs.paga.com/">Paga Engine API</a> — 50 operations and 9 webhook verifiers, organised exactly like Paga's own documentation.</p>
+<div class="hero-actions">
+  <a class="button" href="reference.html">Browse the API reference</a>
+  <a class="button" href="accept-payments.html">Start with accepting payments</a>
+</div>
+</div>
 
 <div class="callout">
   <p class="callout-title">This is an unofficial SDK</p>
@@ -62,28 +69,28 @@
 </div>
 
 <h2 id="install">Install</h2>
-<div class="code-block"><button class="button" data-copy="#code-python-install" type="button">Copy</button><pre><code id="code-python-install" class="language-python">pip install paga-python</code></pre></div>
+<div class="code-block"><button class="button copy-button" data-copy="#code-python-install" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-install" class="language-python">pip install paga-python</code></pre></div>
 <p>Import it as <code>paga</code>.</p>
 
-<div class="code-block"><button class="button" data-copy="#code-python-import" type="button">Copy</button><pre><code id="code-python-import" class="language-python">from paga import PagaClient</code></pre></div>
+<div class="code-block"><button class="button copy-button" data-copy="#code-python-import" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-import" class="language-python"><span class="tok-kw">from</span> paga <span class="tok-kw">import</span> <span class="tok-ty">PagaClient</span></code></pre></div>
 
 <h2 id="quick-start">Quick start</h2>
-<div class="code-block"><button class="button" data-copy="#code-python-quick-start" type="button">Copy</button><pre><code id="code-python-quick-start" class="language-python">async def main() -&gt; None:
-    async with PagaClient(
-        public_id=&quot;YOUR_PUBLIC_KEY&quot;,
-        credentials=&quot;YOUR_SECRET_KEY&quot;,
-        hash_key=&quot;YOUR_HASH_KEY&quot;,
-        environment=&quot;test&quot;,
-    ) as client:
-        payment = await client.create_payment(
-            reference_number=&quot;ORD-2026-0187&quot;,
-            amount=50,
-            payer_name=&quot;Bello Ramon&quot;,
-            payer_phone_number=&quot;08064343187&quot;,
-            payee_name=&quot;Your business name&quot;,
-            call_back_url=&quot;https://yourstore.com/webhooks/paga&quot;,
+<div class="code-block"><button class="button copy-button" data-copy="#code-python-quick-start" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-quick-start" class="language-python"><span class="tok-kw">async</span> <span class="tok-kw">def</span> <span class="tok-fn">main</span>() -&gt; <span class="tok-kw">None</span>:
+    <span class="tok-kw">async</span> <span class="tok-kw">with</span> <span class="tok-fn">PagaClient</span>(
+        public_id=<span class="tok-str">&quot;YOUR_PUBLIC_KEY&quot;</span>,
+        credentials=<span class="tok-str">&quot;YOUR_SECRET_KEY&quot;</span>,
+        hash_key=<span class="tok-str">&quot;YOUR_HASH_KEY&quot;</span>,
+        environment=<span class="tok-str">&quot;test&quot;</span>,
+    ) <span class="tok-kw">as</span> client:
+        payment = <span class="tok-kw">await</span> client.<span class="tok-fn">create_payment</span>(
+            reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+            amount=<span class="tok-num">50</span>,
+            payer_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+            payer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+            payee_name=<span class="tok-str">&quot;Your business name&quot;</span>,
+            call_back_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
         )
-        status = await client.get_payment_status(reference_number=&quot;ORD-2026-0187&quot;)</code></pre></div>
+        status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_payment_status</span>(reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>)</code></pre></div>
 
 <h2 id="what-is-covered">What is covered</h2>
 <p>The SDK wraps 50 documented operations and 9 callbacks, organised by the sections of Paga's own documentation.</p>

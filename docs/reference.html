@@ -84,7 +84,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /checkout/transaction/verify</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/checkout/transaction/verify</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Checkout</span>
     
@@ -94,13 +94,13 @@
 <li>A pending charge is a legitimate answer, so the response is returned rather than raised.</li></ul>
   <h4>Python</h4>
   <p><code>verify_charge</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-verify-charge" type="button">Copy</button><pre><code id="code-python-verify-charge" class="language-python">verified = await client.verify_charge(
-    payment_reference=&quot;PAY-2026-0311&quot;,
-    public_key=&quot;YOUR_PUBLIC_KEY&quot;,
-    amount=50,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-verify-charge" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-verify-charge" class="language-python">verified = <span class="tok-kw">await</span> client.<span class="tok-fn">verify_charge</span>(
+    payment_reference=<span class="tok-str">&quot;PAY-2026-0311&quot;</span>,
+    public_key=<span class="tok-str">&quot;YOUR_PUBLIC_KEY&quot;</span>,
+    amount=<span class="tok-num">50</span>,
 )
-if verified.status_code == 0:
-    print(&quot;paid&quot;)</code></pre></div>
+<span class="tok-kw">if</span> verified.status_code == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;paid&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-create-payment" data-operation="create-payment" data-filter-item data-section="collection" data-search="create a payment request dynamic virtual account - create a payment request post /paymentrequest collection create_payment">
@@ -110,7 +110,7 @@ if verified.status_code == 0:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /paymentRequest</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/paymentRequest</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Collection</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + payer.phoneNumber + payer.email</span>
@@ -120,15 +120,15 @@ if verified.status_code == 0:
 <li><code>payer.email</code> takes part in the hash even when you omit it.</li></ul>
   <h4>Python</h4>
   <p><code>create_payment</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-payment" type="button">Copy</button><pre><code id="code-python-create-payment" class="language-python">payment = await client.create_payment(
-    reference_number=&quot;ORD-2026-0187&quot;,
-    amount=50,
-    payer_name=&quot;Bello Ramon&quot;,
-    payer_phone_number=&quot;08064343187&quot;,
-    payee_name=&quot;Your business name&quot;,
-    payer_email=&quot;customer@example.com&quot;,
-    call_back_url=&quot;https://yourstore.com/webhooks/paga&quot;,
-    payment_methods=[&quot;BANK_TRANSFER&quot;],
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-payment" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-payment" class="language-python">payment = <span class="tok-kw">await</span> client.<span class="tok-fn">create_payment</span>(
+    reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    amount=<span class="tok-num">50</span>,
+    payer_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    payer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    payee_name=<span class="tok-str">&quot;Your business name&quot;</span>,
+    payer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    call_back_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
+    payment_methods=[<span class="tok-str">&quot;BANK_TRANSFER&quot;</span>],
 )</code></pre></div>
 </article>
 
@@ -139,7 +139,7 @@ if verified.status_code == 0:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Collection</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -148,9 +148,9 @@ if verified.status_code == 0:
   <ul><li><code>data.statusCode</code> of <code>&quot;0&quot;</code> means the payment was paid.</li></ul>
   <h4>Python</h4>
   <p><code>get_payment_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-payment-status" type="button">Copy</button><pre><code id="code-python-get-payment-status" class="language-python">status = await client.get_payment_status(reference_number=&quot;ORD-2026-0187&quot;)
-if status.data and status.data.statusCode == &quot;0&quot;:
-    print(&quot;paid&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-payment-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-payment-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_payment_status</span>(reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>)
+<span class="tok-kw">if</span> status.data <span class="tok-kw">and</span> status.data.statusCode == <span class="tok-str">&quot;0&quot;</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;paid&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-collect-banks" data-operation="get-collect-banks" data-filter-item data-section="collection" data-search="list the customer&#39;s banks bank ussd - get the customer&#39;s bank post /banks collection get_collect_banks">
@@ -160,7 +160,7 @@ if status.data and status.data.statusCode == &quot;0&quot;:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /banks</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/banks</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Collection</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -169,9 +169,9 @@ if status.data and status.data.statusCode == &quot;0&quot;:
   
   <h4>Python</h4>
   <p><code>get_collect_banks</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-collect-banks" type="button">Copy</button><pre><code id="code-python-get-collect-banks" class="language-python">banks = await client.get_collect_banks(reference_number=&quot;REF-000001&quot;)
-for bank in banks.banks or []:
-    print(bank.name, bank.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-collect-banks" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-collect-banks" class="language-python">banks = <span class="tok-kw">await</span> client.<span class="tok-fn">get_collect_banks</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> bank <span class="tok-kw">in</span> banks.banks <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(bank.name, bank.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-usd-payment-status" data-operation="get-usd-payment-status" data-filter-item data-section="collection" data-search="check usd payment status bank transfer (ach, wire and swift) - check payment status post /status collection get_usd_payment_status">
@@ -181,7 +181,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Collection</span>
     <span class="tag tag-endpoint">referenceNumber + paymentCurrency</span>
@@ -190,9 +190,9 @@ for bank in banks.banks or []:
   <ul><li><code>data.statusCode</code> of <code>&quot;1&quot;</code> means the payment is still pending.</li></ul>
   <h4>Python</h4>
   <p><code>get_usd_payment_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-usd-payment-status" type="button">Copy</button><pre><code id="code-python-get-usd-payment-status" class="language-python">status = await client.get_usd_payment_status(
-    reference_number=&quot;ORD-2026-0187&quot;,
-    payment_currency=&quot;USD&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-usd-payment-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-usd-payment-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_usd_payment_status</span>(
+    reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    payment_currency=<span class="tok-str">&quot;USD&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -203,7 +203,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /history</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/history</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Collection</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -212,7 +212,7 @@ for bank in banks.banks or []:
   
   <h4>Python</h4>
   <p><code>get_payment_request_history</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-payment-request-history" type="button">Copy</button><pre><code id="code-python-get-payment-request-history" class="language-python">history = await client.get_payment_request_history(reference_number=&quot;REF-000001&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-payment-request-history" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-payment-request-history" class="language-python">history = <span class="tok-kw">await</span> client.<span class="tok-fn">get_payment_request_history</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-refund-payment" data-operation="refund-payment" data-filter-item data-section="refunds" data-search="refund or cancel a payment request refunds - refund or cancel a payment request post /refund/v2 refunds refund_payment">
@@ -222,7 +222,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /refund/v2</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/refund/v2</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Refunds</span>
     <span class="tag tag-endpoint">referenceNumber + refundAmount</span>
@@ -232,11 +232,11 @@ for bank in banks.banks or []:
 <li>Reusing a <code>referenceNumber</code> returns status code <code>102</code> and never refunds twice.</li></ul>
   <h4>Python</h4>
   <p><code>refund_payment</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-refund-payment" type="button">Copy</button><pre><code id="code-python-refund-payment" class="language-python">refund = await client.refund_payment(
-    reference_number=&quot;RFD-2026-0031&quot;,
-    payment_request_reference=&quot;ORD-2026-0187&quot;,
-    refund_amount=50,
-    reason=&quot;Item out of stock&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-refund-payment" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-refund-payment" class="language-python">refund = <span class="tok-kw">await</span> client.<span class="tok-fn">refund_payment</span>(
+    reference_number=<span class="tok-str">&quot;RFD-2026-0031&quot;</span>,
+    payment_request_reference=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    refund_amount=<span class="tok-num">50</span>,
+    reason=<span class="tok-str">&quot;Item out of stock&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -247,7 +247,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Refunds</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -256,9 +256,9 @@ for bank in banks.banks or []:
   <ul><li><code>data.refundStatus</code> becomes <code>&quot;refunded&quot;</code> once the refund is made.</li></ul>
   <h4>Python</h4>
   <p><code>get_refund_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-refund-status" type="button">Copy</button><pre><code id="code-python-get-refund-status" class="language-python">status = await client.get_refund_status(reference_number=&quot;ORD-2026-0187&quot;)
-if status.isRefunded:
-    print(&quot;refunded&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-refund-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-refund-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_refund_status</span>(reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>)
+<span class="tok-kw">if</span> status.isRefunded:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;refunded&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-start-direct-debit-session" data-operation="start-direct-debit-session" data-filter-item data-section="direct-debit" data-search="start a hosted set-up session direct debit - start a hosted set-up session post /checkout/charge-process/start direct debit start_direct_debit_session">
@@ -268,7 +268,7 @@ if status.isRefunded:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /checkout/charge-process/start</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/checkout/charge-process/start</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     
@@ -277,13 +277,13 @@ if status.isRefunded:
   <ul><li>The session expiry and payment expiry are strings of seconds.</li></ul>
   <h4>Python</h4>
   <p><code>start_direct_debit_session</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-start-direct-debit-session" type="button">Copy</button><pre><code id="code-python-start-direct-debit-session" class="language-python">session = await client.start_direct_debit_session(
-    reference_number=&quot;DD-2026-0001&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    amount_limit=50000,
-    callback_url=&quot;https://yourstore.com/webhooks/mandate&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-start-direct-debit-session" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-start-direct-debit-session" class="language-python">session = <span class="tok-kw">await</span> client.<span class="tok-fn">start_direct_debit_session</span>(
+    reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    amount_limit=<span class="tok-num">50000</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/mandate&quot;</span>,
 )
-print(session.checkoutUrl)</code></pre></div>
+<span class="tok-bi">print</span>(session.checkoutUrl)</code></pre></div>
 </article>
 
 <article class="op" id="op-create-direct-debit-mandate" data-operation="create-direct-debit-mandate" data-filter-item data-section="direct-debit" data-search="set up a mandate by api direct debit - set up a mandate by api post /paymentrequest direct debit create_direct_debit_mandate">
@@ -293,7 +293,7 @@ print(session.checkoutUrl)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /paymentRequest</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/paymentRequest</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + payer.phoneNumber + payer.email</span>
@@ -303,15 +303,15 @@ print(session.checkoutUrl)</code></pre></div>
 <li><code>payerCollectionFeeShare</code> and <code>payeeCollectionFeeShare</code> must sum to 1.0.</li></ul>
   <h4>Python</h4>
   <p><code>create_direct_debit_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-direct-debit-mandate" type="button">Copy</button><pre><code id="code-python-create-direct-debit-mandate" class="language-python">mandate = await client.create_direct_debit_mandate(
-    reference_number=&quot;DD-2026-0001&quot;,
-    amount=5000,
-    payer_name=&quot;Bello Ramon&quot;,
-    payer_phone_number=&quot;08064343187&quot;,
-    payee_name=&quot;Your business name&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    payer_email=&quot;customer@example.com&quot;,
-    call_back_url=&quot;https://yourstore.com/webhooks/mandate&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-direct-debit-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-direct-debit-mandate" class="language-python">mandate = <span class="tok-kw">await</span> client.<span class="tok-fn">create_direct_debit_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    payer_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    payer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    payee_name=<span class="tok-str">&quot;Your business name&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    payer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    call_back_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/mandate&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -322,7 +322,7 @@ print(session.checkoutUrl)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -332,9 +332,9 @@ print(session.checkoutUrl)</code></pre></div>
 <li>Read <code>data.additionalData.mandate[].ProcessStatusId</code> instead: <code>PENDING</code>, <code>VERIFIED</code>, <code>APPROVED</code> or <code>REJECTED</code>. Charge only when it is <code>APPROVED</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_mandate_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-mandate-status" type="button">Copy</button><pre><code id="code-python-get-mandate-status" class="language-python">status = await client.get_mandate_status(reference_number=&quot;DD-2026-0001&quot;)
-if status.isApproved:
-    print(&quot;ready to charge&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-mandate-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-mandate-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_mandate_status</span>(reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>)
+<span class="tok-kw">if</span> status.isApproved:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;ready to charge&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-charge-mandate" data-operation="charge-mandate" data-filter-item data-section="direct-debit" data-search="charge the mandate direct debit - charge the mandate post /chargedebitmandate direct debit charge_mandate">
@@ -344,7 +344,7 @@ if status.isApproved:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /chargeDebitMandate</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/chargeDebitMandate</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     <span class="tag tag-endpoint">referenceNumber + amount + accountReference</span>
@@ -353,10 +353,10 @@ if status.isApproved:
   <ul><li>A successful response means the charge was **accepted**, not completed — fulfil only once the charge callback confirms it.</li></ul>
   <h4>Python</h4>
   <p><code>charge_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-charge-mandate" type="button">Copy</button><pre><code id="code-python-charge-mandate" class="language-python">charge = await client.charge_mandate(
-    reference_number=&quot;DD-CHARGE-0001&quot;,
-    amount=600,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-charge-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-charge-mandate" class="language-python">charge = <span class="tok-kw">await</span> client.<span class="tok-fn">charge_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-CHARGE-0001&quot;</span>,
+    amount=<span class="tok-num">600</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -367,7 +367,7 @@ if status.isApproved:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /getChargeMandateStatus</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getChargeMandateStatus</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -376,9 +376,9 @@ if status.isApproved:
   <ul><li><code>data.statusCode</code> is <code>0</code> charged, <code>1</code> pending, <code>-1</code> invalid and <code>-4</code> unknown.</li></ul>
   <h4>Python</h4>
   <p><code>get_charge_mandate_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-charge-mandate-status" type="button">Copy</button><pre><code id="code-python-get-charge-mandate-status" class="language-python">status = await client.get_charge_mandate_status(reference_number=&quot;DD-CHARGE-0001&quot;)
-if status.chargeStatus == 0:
-    print(&quot;charged&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-charge-mandate-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-charge-mandate-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_charge_mandate_status</span>(reference_number=<span class="tok-str">&quot;DD-CHARGE-0001&quot;</span>)
+<span class="tok-kw">if</span> status.chargeStatus == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;charged&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-disable-mandate" data-operation="disable-mandate" data-filter-item data-section="direct-debit" data-search="disable a mandate direct debit - disable a mandate post /disablemandate direct debit disable_mandate">
@@ -388,7 +388,7 @@ if status.chargeStatus == 0:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /disableMandate</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/disableMandate</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Direct Debit</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference</span>
@@ -397,9 +397,9 @@ if status.chargeStatus == 0:
   
   <h4>Python</h4>
   <p><code>disable_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-disable-mandate" type="button">Copy</button><pre><code id="code-python-disable-mandate" class="language-python">await client.disable_mandate(
-    reference_number=&quot;DD-DIS-0001&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-disable-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-disable-mandate" class="language-python"><span class="tok-kw">await</span> client.<span class="tok-fn">disable_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-DIS-0001&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -410,7 +410,7 @@ if status.chargeStatus == 0:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getBanks</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getBanks</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -420,9 +420,9 @@ if status.chargeStatus == 0:
 <li>To send to a Paga wallet, use Paga's UUID <code>AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_banks</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-banks" type="button">Copy</button><pre><code id="code-python-get-banks" class="language-python">banks = await client.get_banks(reference_number=&quot;REF-000001&quot;)
-for bank in banks.banks or []:
-    print(bank.name, bank.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-banks" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-banks" class="language-python">banks = <span class="tok-kw">await</span> client.<span class="tok-fn">get_banks</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> bank <span class="tok-kw">in</span> banks.banks <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(bank.name, bank.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-validate-deposit-to-bank" data-operation="validate-deposit-to-bank" data-filter-item data-section="money-transfer" data-search="validate the destination account money transfer - validate the account post /validatedeposittobank money transfer validate_deposit_to_bank">
@@ -432,7 +432,7 @@ for bank in banks.banks or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /validateDepositToBank</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/validateDepositToBank</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationBankUUID + destinationBankAccountNumber</span>
@@ -441,13 +441,13 @@ for bank in banks.banks or []:
   <ul><li>Send <code>amount</code> exactly as you will send it later: <code>&quot;5000.00&quot;</code> and <code>&quot;5000&quot;</code> sign differently.</li></ul>
   <h4>Python</h4>
   <p><code>validate_deposit_to_bank</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-validate-deposit-to-bank" type="button">Copy</button><pre><code id="code-python-validate-deposit-to-bank" class="language-python">validation = await client.validate_deposit_to_bank(
-    reference_number=&quot;REF-000002&quot;,
-    amount=&quot;5000.00&quot;,
-    destination_bank_uuid=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    destination_bank_account_number=&quot;0000000000&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-validate-deposit-to-bank" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-validate-deposit-to-bank" class="language-python">validation = <span class="tok-kw">await</span> client.<span class="tok-fn">validate_deposit_to_bank</span>(
+    reference_number=<span class="tok-str">&quot;REF-000002&quot;</span>,
+    amount=<span class="tok-str">&quot;5000.00&quot;</span>,
+    destination_bank_uuid=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    destination_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
 )
-print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre></div>
+<span class="tok-bi">print</span>(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre></div>
 </article>
 
 <article class="op" id="op-send-money" data-operation="send-money" data-filter-item data-section="money-transfer" data-search="send money to a bank account money transfer - send the money post /deposittobank money transfer send_money">
@@ -457,7 +457,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /depositToBank</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/depositToBank</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationBankUUID + destinationBankAccountNumber</span>
@@ -467,12 +467,12 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
 <li>There is no callback for the outcome; use the transaction status endpoint.</li></ul>
   <h4>Python</h4>
   <p><code>send_money</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-send-money" type="button">Copy</button><pre><code id="code-python-send-money" class="language-python">transfer = await client.send_money(
-    reference_number=&quot;PAY-2026-0311&quot;,
-    amount=&quot;5000.00&quot;,
-    destination_bank_uuid=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    destination_bank_account_number=&quot;0000000000&quot;,
-    remarks=&quot;Salary for June&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-send-money" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-send-money" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">send_money</span>(
+    reference_number=<span class="tok-str">&quot;PAY-2026-0311&quot;</span>,
+    amount=<span class="tok-str">&quot;5000.00&quot;</span>,
+    destination_bank_uuid=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    destination_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
+    remarks=<span class="tok-str">&quot;Salary for June&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -483,7 +483,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /moneyTransfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/moneyTransfer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount</span>
@@ -492,10 +492,10 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   <ul><li><code>referenceNumber</code> must be at most 50 characters.</li></ul>
   <h4>Python</h4>
   <p><code>transfer_to_paga_wallet</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-transfer-to-paga-wallet" type="button">Copy</button><pre><code id="code-python-transfer-to-paga-wallet" class="language-python">transfer = await client.transfer_to_paga_wallet(
-    reference_number=&quot;PAY-2026-0312&quot;,
-    amount=5000,
-    destination_account=&quot;08064343187&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-transfer-to-paga-wallet" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-transfer-to-paga-wallet" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">transfer_to_paga_wallet</span>(
+    reference_number=<span class="tok-str">&quot;PAY-2026-0312&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    destination_account=<span class="tok-str">&quot;08064343187&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -506,7 +506,7 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /validateMoneyTransfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/validateMoneyTransfer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount</span>
@@ -515,12 +515,12 @@ print(validation.destinationAccountHolderNameAtBank, validation.fee)</code></pre
   
   <h4>Python</h4>
   <p><code>validate_money_transfer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-validate-money-transfer" type="button">Copy</button><pre><code id="code-python-validate-money-transfer" class="language-python">validation = await client.validate_money_transfer(
-    reference_number=&quot;REF-000003&quot;,
-    amount=5000,
-    destination_account=&quot;08064343187&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-validate-money-transfer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-validate-money-transfer" class="language-python">validation = <span class="tok-kw">await</span> client.<span class="tok-fn">validate_money_transfer</span>(
+    reference_number=<span class="tok-str">&quot;REF-000003&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    destination_account=<span class="tok-str">&quot;08064343187&quot;</span>,
 )
-print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
+<span class="tok-bi">print</span>(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
 </article>
 
 <article class="op" id="op-send-bulk-money-transfer" data-operation="send-bulk-money-transfer" data-filter-item data-section="money-transfer" data-search="bulk money transfer business api - bulk money transfer post /moneytransferbulk money transfer send_bulk_money_transfer">
@@ -530,7 +530,7 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /moneyTransferBulk</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/moneyTransferBulk</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Money Transfer</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationAccount + itemCount</span>
@@ -540,20 +540,20 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
 <li>A bulk transfer can partially succeed, so check every entry in <code>results</code>.</li></ul>
   <h4>Python</h4>
   <p><code>send_bulk_money_transfer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-send-bulk-money-transfer" type="button">Copy</button><pre><code id="code-python-send-bulk-money-transfer" class="language-python">bulk = await client.send_bulk_money_transfer(
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-send-bulk-money-transfer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-send-bulk-money-transfer" class="language-python">bulk = <span class="tok-kw">await</span> client.<span class="tok-fn">send_bulk_money_transfer</span>(
     items=[
         {
-            &quot;referenceNumber&quot;: &quot;ITEM-1&quot;,
-            &quot;amount&quot;: 100,
-            &quot;destinationAccount&quot;: &quot;08064343187&quot;,
+            <span class="tok-str">&quot;referenceNumber&quot;</span>: <span class="tok-str">&quot;ITEM-1&quot;</span>,
+            <span class="tok-str">&quot;amount&quot;</span>: <span class="tok-num">100</span>,
+            <span class="tok-str">&quot;destinationAccount&quot;</span>: <span class="tok-str">&quot;08064343187&quot;</span>,
         },
         {
-            &quot;referenceNumber&quot;: &quot;ITEM-2&quot;,
-            &quot;amount&quot;: 200,
-            &quot;destinationAccount&quot;: &quot;08064343188&quot;,
+            <span class="tok-str">&quot;referenceNumber&quot;</span>: <span class="tok-str">&quot;ITEM-2&quot;</span>,
+            <span class="tok-str">&quot;amount&quot;</span>: <span class="tok-num">200</span>,
+            <span class="tok-str">&quot;destinationAccount&quot;</span>: <span class="tok-str">&quot;08064343188&quot;</span>,
         },
     ],
-    bulk_reference_number=&quot;BULK-2026-0001&quot;,
+    bulk_reference_number=<span class="tok-str">&quot;BULK-2026-0001&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -564,7 +564,7 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /transactionStatus</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/transactionStatus</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Transaction status</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -575,9 +575,9 @@ print(validation.recipientAccountHolderName, validation.fee)</code></pre></div>
 <li>The <code>status</code> field is human-readable and may be reworded — branch on <code>responseCode</code>, not on <code>status</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_transaction_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-transaction-status" type="button">Copy</button><pre><code id="code-python-get-transaction-status" class="language-python">status = await client.get_transaction_status(reference_number=&quot;PAY-2026-0311&quot;)
-if status.responseCode == 0:
-    print(&quot;settled&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-transaction-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-transaction-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_transaction_status</span>(reference_number=<span class="tok-str">&quot;PAY-2026-0311&quot;</span>)
+<span class="tok-kw">if</span> status.responseCode == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;settled&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-mobile-operators" data-operation="get-mobile-operators" data-filter-item data-section="airtime" data-search="list mobile operators airtime and data - get the mobile operator post /getmobileoperators airtime and data get_mobile_operators">
@@ -587,7 +587,7 @@ if status.responseCode == 0:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMobileOperators</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMobileOperators</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Airtime and data</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -597,9 +597,9 @@ if status.responseCode == 0:
 <li>Cache the list.</li></ul>
   <h4>Python</h4>
   <p><code>get_mobile_operators</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-mobile-operators" type="button">Copy</button><pre><code id="code-python-get-mobile-operators" class="language-python">operators = await client.get_mobile_operators(reference_number=&quot;REF-000001&quot;)
-for operator in operators.mobileOperator or []:
-    print(operator.name, operator.mobileOperatorCode)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-mobile-operators" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-mobile-operators" class="language-python">operators = <span class="tok-kw">await</span> client.<span class="tok-fn">get_mobile_operators</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> operator <span class="tok-kw">in</span> operators.mobileOperator <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(operator.name, operator.mobileOperatorCode)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-data-bundles" data-operation="get-data-bundles" data-filter-item data-section="airtime" data-search="list data bundles airtime and data - for data, pick a bundle post /getdatabundlebyoperator airtime and data get_data_bundles">
@@ -609,7 +609,7 @@ for operator in operators.mobileOperator or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getDataBundleByOperator</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getDataBundleByOperator</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Airtime and data</span>
     <span class="tag tag-endpoint">referenceNumber + operatorPublicId</span>
@@ -619,9 +619,9 @@ for operator in operators.mobileOperator or []:
 <li>Bundles rarely change, so cache the list and refresh it monthly.</li></ul>
   <h4>Python</h4>
   <p><code>get_data_bundles</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-data-bundles" type="button">Copy</button><pre><code id="code-python-get-data-bundles" class="language-python">bundles = await client.get_data_bundles(
-    reference_number=&quot;REF-000001&quot;,
-    operator_public_id=&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-data-bundles" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-data-bundles" class="language-python">bundles = <span class="tok-kw">await</span> client.<span class="tok-fn">get_data_bundles</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    operator_public_id=<span class="tok-str">&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -632,7 +632,7 @@ for operator in operators.mobileOperator or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /airtimePurchase</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/airtimePurchase</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Airtime and data</span>
     <span class="tag tag-endpoint">referenceNumber + amount + destinationPhoneNumber</span>
@@ -642,11 +642,11 @@ for operator in operators.mobileOperator or []:
 <li>For a data bundle, <code>amount</code> must be exactly the bundle's <code>servicePrice</code>.</li></ul>
   <h4>Python</h4>
   <p><code>buy_airtime</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-buy-airtime" type="button">Copy</button><pre><code id="code-python-buy-airtime" class="language-python">purchase = await client.buy_airtime(
-    reference_number=&quot;AIR-2026-0042&quot;,
-    amount=&quot;500&quot;,
-    destination_phone_number=&quot;08063332187&quot;,
-    mobile_operator_public_id=&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-buy-airtime" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-buy-airtime" class="language-python">purchase = <span class="tok-kw">await</span> client.<span class="tok-fn">buy_airtime</span>(
+    reference_number=<span class="tok-str">&quot;AIR-2026-0042&quot;</span>,
+    amount=<span class="tok-str">&quot;500&quot;</span>,
+    destination_phone_number=<span class="tok-str">&quot;08063332187&quot;</span>,
+    mobile_operator_public_id=<span class="tok-str">&quot;42419156-DD57-4737-8373-20678CD9AA29&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -657,7 +657,7 @@ for operator in operators.mobileOperator or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchants</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchants</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Bill payment</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -666,9 +666,9 @@ for operator in operators.mobileOperator or []:
   
   <h4>Python</h4>
   <p><code>get_merchants</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchants" type="button">Copy</button><pre><code id="code-python-get-merchants" class="language-python">merchants = await client.get_merchants(reference_number=&quot;REF-000001&quot;)
-for merchant in merchants.merchants or []:
-    print(merchant.displayName, merchant.uuid)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchants" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchants" class="language-python">merchants = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchants</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)
+<span class="tok-kw">for</span> merchant <span class="tok-kw">in</span> merchants.merchants <span class="tok-kw">or</span> []:
+    <span class="tok-bi">print</span>(merchant.displayName, merchant.uuid)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-merchant-services" data-operation="get-merchant-services" data-filter-item data-section="bill-payment" data-search="list a biller&#39;s services bill payment - pick the service post /getmerchantservices bill payment get_merchant_services">
@@ -678,7 +678,7 @@ for merchant in merchants.merchants or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchantServices</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchantServices</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Bill payment</span>
     <span class="tag tag-endpoint">referenceNumber + merchantPublicId</span>
@@ -688,9 +688,9 @@ for merchant in merchants.merchants or []:
 <li>A service with <code>price</code> <code>0.0</code> means the customer chooses the amount; otherwise pay the service's <code>price</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_merchant_services</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchant-services" type="button">Copy</button><pre><code id="code-python-get-merchant-services" class="language-python">services = await client.get_merchant_services(
-    reference_number=&quot;REF-000001&quot;,
-    merchant_public_id=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchant-services" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchant-services" class="language-python">services = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchant_services</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    merchant_public_id=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -701,7 +701,7 @@ for merchant in merchants.merchants or []:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getMerchantAccountDetails</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getMerchantAccountDetails</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Bill payment</span>
     <span class="tag tag-endpoint">referenceNumber + merchantAccount + merchantReferenceNumber + merchantServiceProductCode</span>
@@ -711,12 +711,12 @@ for merchant in merchants.merchants or []:
 <li>Billers that don't need it still take part in the hash — send <code>&quot;&quot;</code> when there is no service.</li></ul>
   <h4>Python</h4>
   <p><code>get_merchant_account_details</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-merchant-account-details" type="button">Copy</button><pre><code id="code-python-get-merchant-account-details" class="language-python">customer = await client.get_merchant_account_details(
-    reference_number=&quot;REF-000001&quot;,
-    merchant_account=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
-    merchant_reference_number=&quot;8110411076&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-merchant-account-details" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-merchant-account-details" class="language-python">customer = <span class="tok-kw">await</span> client.<span class="tok-fn">get_merchant_account_details</span>(
+    reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    merchant_account=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
+    merchant_reference_number=<span class="tok-str">&quot;8110411076&quot;</span>,
 )
-print(customer.customerName)</code></pre></div>
+<span class="tok-bi">print</span>(customer.customerName)</code></pre></div>
 </article>
 
 <article class="op" id="op-pay-bill" data-operation="pay-bill" data-filter-item data-section="bill-payment" data-search="pay the bill bill payment - pay the bill post /merchantpayment bill payment pay_bill">
@@ -726,7 +726,7 @@ print(customer.customerName)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /merchantPayment</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/merchantPayment</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Bill payment</span>
     <span class="tag tag-endpoint">referenceNumber + amount + merchantAccount + merchantReferenceNumber</span>
@@ -736,15 +736,15 @@ print(customer.customerName)</code></pre></div>
 <li><code>integrationStatus</code> is for information only.</li></ul>
   <h4>Python</h4>
   <p><code>pay_bill</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-pay-bill" type="button">Copy</button><pre><code id="code-python-pay-bill" class="language-python">bill = await client.pay_bill(
-    reference_number=&quot;BILL-2026-0042&quot;,
-    amount=6000,
-    merchant_account=&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;,
-    merchant_reference_number=&quot;8110411076&quot;,
-    merchant_service=[&quot;STARTERE36&quot;],
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-pay-bill" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-pay-bill" class="language-python">bill = <span class="tok-kw">await</span> client.<span class="tok-fn">pay_bill</span>(
+    reference_number=<span class="tok-str">&quot;BILL-2026-0042&quot;</span>,
+    amount=<span class="tok-num">6000</span>,
+    merchant_account=<span class="tok-str">&quot;A3878DC1-F07D-48E7-AA59-8276C3C26647&quot;</span>,
+    merchant_reference_number=<span class="tok-str">&quot;8110411076&quot;</span>,
+    merchant_service=[<span class="tok-str">&quot;STARTERE36&quot;</span>],
 )
-if bill.responseCode == 0:
-    print(&quot;paid&quot;)</code></pre></div>
+<span class="tok-kw">if</span> bill.responseCode == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;paid&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-business-balance" data-operation="get-business-balance" data-filter-item data-section="business-account" data-search="check the business account balance your business account - check your balance post /accountbalance business account get_business_balance">
@@ -754,7 +754,7 @@ if bill.responseCode == 0:
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /accountBalance</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/accountBalance</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -763,8 +763,8 @@ if bill.responseCode == 0:
   <ul><li>Check <code>availableBalance</code>, not <code>totalBalance</code>, before a payout run — it is what you can actually send.</li></ul>
   <h4>Python</h4>
   <p><code>get_business_balance</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-business-balance" type="button">Copy</button><pre><code id="code-python-get-business-balance" class="language-python">balance = await client.get_business_balance(reference_number=&quot;BAL-2026-0042&quot;)
-print(balance.availableBalance)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-business-balance" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-business-balance" class="language-python">balance = <span class="tok-kw">await</span> client.<span class="tok-fn">get_business_balance</span>(reference_number=<span class="tok-str">&quot;BAL-2026-0042&quot;</span>)
+<span class="tok-bi">print</span>(balance.availableBalance)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-business-transactions" data-operation="get-business-transactions" data-filter-item data-section="business-account" data-search="get the transaction history your business account - get your transaction history post /transactionhistory business account get_business_transactions">
@@ -774,7 +774,7 @@ print(balance.availableBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /transactionHistory</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/transactionHistory</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -783,10 +783,10 @@ print(balance.availableBalance)</code></pre></div>
   <ul><li>Use it to reconcile your records with Paga's.</li></ul>
   <h4>Python</h4>
   <p><code>get_business_transactions</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-business-transactions" type="button">Copy</button><pre><code id="code-python-get-business-transactions" class="language-python">history = await client.get_business_transactions(
-    reference_number=&quot;HIS-2026-0042&quot;,
-    start_date_utc=&quot;2026-11-01T00:00:00&quot;,
-    end_date_utc=&quot;2026-11-04T00:00:00&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-business-transactions" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-business-transactions" class="language-python">history = <span class="tok-kw">await</span> client.<span class="tok-fn">get_business_transactions</span>(
+    reference_number=<span class="tok-str">&quot;HIS-2026-0042&quot;</span>,
+    start_date_utc=<span class="tok-str">&quot;2026-11-01T00:00:00&quot;</span>,
+    end_date_utc=<span class="tok-str">&quot;2026-11-04T00:00:00&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -797,7 +797,7 @@ print(balance.availableBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /recentTransactionHistory</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/recentTransactionHistory</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -806,7 +806,7 @@ print(balance.availableBalance)</code></pre></div>
   <ul><li>For anything further back, use the transaction history endpoint.</li></ul>
   <h4>Python</h4>
   <p><code>get_recent_transactions</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-recent-transactions" type="button">Copy</button><pre><code id="code-python-get-recent-transactions" class="language-python">recent = await client.get_recent_transactions(reference_number=&quot;REF-000001&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-recent-transactions" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-recent-transactions" class="language-python">recent = <span class="tok-kw">await</span> client.<span class="tok-fn">get_recent_transactions</span>(reference_number=<span class="tok-str">&quot;REF-000001&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-operation-status" data-operation="get-operation-status" data-filter-item data-section="business-account" data-search="check an operation&#39;s status business api - get an operation status post /getoperationstatus business account get_operation_status">
@@ -816,7 +816,7 @@ print(balance.availableBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /getOperationStatus</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getOperationStatus</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber</span>
@@ -825,8 +825,8 @@ print(balance.availableBalance)</code></pre></div>
   <ul><li>The status is in <code>transactionStatus</code>, not <code>status</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_operation_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-operation-status" type="button">Copy</button><pre><code id="code-python-get-operation-status" class="language-python">status = await client.get_operation_status(reference_number=&quot;PAY-2026-0311&quot;)
-print(status.transactionStatus)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-operation-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-operation-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_operation_status</span>(reference_number=<span class="tok-str">&quot;PAY-2026-0311&quot;</span>)
+<span class="tok-bi">print</span>(status.transactionStatus)</code></pre></div>
 </article>
 
 <article class="op" id="op-onboard-merchant" data-operation="onboard-merchant" data-filter-item data-section="business-account" data-search="onboard a merchant business api - onboard a merchant post /onboardmerchant business account onboard_merchant">
@@ -836,7 +836,7 @@ print(status.transactionStatus)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /onboardMerchant</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/onboardMerchant</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber + merchantExternalId + name + phone + email</span>
@@ -846,20 +846,20 @@ print(status.transactionStatus)</code></pre></div>
 <li>Paga names the request field <code>reference</code>, not <code>referenceNumber</code>.</li></ul>
   <h4>Python</h4>
   <p><code>onboard_merchant</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-onboard-merchant" type="button">Copy</button><pre><code id="code-python-onboard-merchant" class="language-python">merchant = await client.onboard_merchant(
-    reference=&quot;REF-000001&quot;,
-    merchant_external_id=&quot;MERCH-1&quot;,
-    legal_entity={&quot;name&quot;: &quot;Acme Ltd&quot;},
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-onboard-merchant" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-onboard-merchant" class="language-python">merchant = <span class="tok-kw">await</span> client.<span class="tok-fn">onboard_merchant</span>(
+    reference=<span class="tok-str">&quot;REF-000001&quot;</span>,
+    merchant_external_id=<span class="tok-str">&quot;MERCH-1&quot;</span>,
+    legal_entity={<span class="tok-str">&quot;name&quot;</span>: <span class="tok-str">&quot;Acme Ltd&quot;</span>},
     legal_entity_representative={
-        &quot;firstName&quot;: &quot;Bello&quot;,
-        &quot;lastName&quot;: &quot;Ramon&quot;,
-        &quot;phone&quot;: &quot;08064343187&quot;,
-        &quot;email&quot;: &quot;director@example.com&quot;,
-        &quot;dateOfBirth&quot;: &quot;1989-10-02&quot;,
+        <span class="tok-str">&quot;firstName&quot;</span>: <span class="tok-str">&quot;Bello&quot;</span>,
+        <span class="tok-str">&quot;lastName&quot;</span>: <span class="tok-str">&quot;Ramon&quot;</span>,
+        <span class="tok-str">&quot;phone&quot;</span>: <span class="tok-str">&quot;08064343187&quot;</span>,
+        <span class="tok-str">&quot;email&quot;</span>: <span class="tok-str">&quot;director@example.com&quot;</span>,
+        <span class="tok-str">&quot;dateOfBirth&quot;</span>: <span class="tok-str">&quot;1989-10-02&quot;</span>,
     },
     integration={
-        &quot;type&quot;: &quot;EMAIL_NOTIFICATION&quot;,
-        &quot;financeAdminEmail&quot;: &quot;finance@example.com&quot;,
+        <span class="tok-str">&quot;type&quot;</span>: <span class="tok-str">&quot;EMAIL_NOTIFICATION&quot;</span>,
+        <span class="tok-str">&quot;financeAdminEmail&quot;</span>: <span class="tok-str">&quot;finance@example.com&quot;</span>,
     },
 )</code></pre></div>
 </article>
@@ -871,7 +871,7 @@ print(status.transactionStatus)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /dispenseCash</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/dispenseCash</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Business account</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + amount + withdrawalCode</span>
@@ -880,11 +880,11 @@ print(status.transactionStatus)</code></pre></div>
   
   <h4>Python</h4>
   <p><code>dispense_cash</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-dispense-cash" type="button">Copy</button><pre><code id="code-python-dispense-cash" class="language-python">cash = await client.dispense_cash(
-    reference_number=&quot;CASH-2026-0042&quot;,
-    customer_phone_number=&quot;08064343187&quot;,
-    amount=5000,
-    withdrawal_code=&quot;123456&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-dispense-cash" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-dispense-cash" class="language-python">cash = <span class="tok-kw">await</span> client.<span class="tok-fn">dispense_cash</span>(
+    reference_number=<span class="tok-str">&quot;CASH-2026-0042&quot;</span>,
+    customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    withdrawal_code=<span class="tok-str">&quot;123456&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -895,7 +895,7 @@ print(status.transactionStatus)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference + iifiNumber + autoSweep.bankPublicId + autoSweep.destination + autoSweep.accountNumber + callbackUrl</span>
@@ -905,15 +905,15 @@ print(status.transactionStatus)</code></pre></div>
 <li>Reusing a <code>referenceNumber</code> or <code>accountReference</code> returns status code <code>102</code> and never creates a second account.</li></ul>
   <h4>Python</h4>
   <p><code>create_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-subsidiary-account" type="button">Copy</button><pre><code id="code-python-create-subsidiary-account" class="language-python">account = await client.create_subsidiary_account(
-    reference_number=&quot;REF-000005&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    account_name=&quot;Bello Ramon&quot;,
-    iifi_number=&quot;22222132329&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">create_subsidiary_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000005&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    account_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    iifi_number=<span class="tok-str">&quot;22222132329&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
 )
-if account.statusCode == &quot;102&quot;:
-    print(&quot;duplicate reference&quot;)</code></pre></div>
+<span class="tok-kw">if</span> account.statusCode == <span class="tok-str">&quot;102&quot;</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;duplicate reference&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-charge-subsidiary-account" data-operation="charge-subsidiary-account" data-filter-item data-section="subsidiary" data-search="charge a subsidiary account subsidiary accounts - charge an account post /subsidiary-accounts/{accountreference}/charge subsidiary accounts charge_subsidiary_account">
@@ -923,7 +923,7 @@ if account.statusCode == &quot;102&quot;:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/{accountReference}/charge</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/charge</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + narration</span>
@@ -933,13 +933,13 @@ if account.statusCode == &quot;102&quot;:
 <li>Retrying with the same <code>referenceNumber</code> never moves money twice.</li></ul>
   <h4>Python</h4>
   <p><code>charge_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-charge-subsidiary-account" type="button">Copy</button><pre><code id="code-python-charge-subsidiary-account" class="language-python">charge = await client.charge_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-CHARGE-001&quot;,
-    amount=1000,
-    narration=&quot;Service fee&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-charge-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-charge-subsidiary-account" class="language-python">charge = <span class="tok-kw">await</span> client.<span class="tok-fn">charge_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-CHARGE-001&quot;</span>,
+    amount=<span class="tok-num">1000</span>,
+    narration=<span class="tok-str">&quot;Service fee&quot;</span>,
 )
-print(charge.newBalance)</code></pre></div>
+<span class="tok-bi">print</span>(charge.newBalance)</code></pre></div>
 </article>
 
 <article class="op" id="op-top-up-subsidiary-account" data-operation="top-up-subsidiary-account" data-filter-item data-section="subsidiary" data-search="top up a subsidiary account subsidiary accounts - top up an account post /subsidiary-accounts/{accountreference}/topup subsidiary accounts top_up_subsidiary_account">
@@ -949,7 +949,7 @@ print(charge.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/{accountReference}/topup</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/topup</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + narration</span>
@@ -958,13 +958,13 @@ print(charge.newBalance)</code></pre></div>
   <ul><li>Not available on virtual accounts.</li></ul>
   <h4>Python</h4>
   <p><code>top_up_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-top-up-subsidiary-account" type="button">Copy</button><pre><code id="code-python-top-up-subsidiary-account" class="language-python">top_up = await client.top_up_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-TOPUP-001&quot;,
-    amount=500,
-    narration=&quot;Bonus credit&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-top-up-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-top-up-subsidiary-account" class="language-python">top_up = <span class="tok-kw">await</span> client.<span class="tok-fn">top_up_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-TOPUP-001&quot;</span>,
+    amount=<span class="tok-num">500</span>,
+    narration=<span class="tok-str">&quot;Bonus credit&quot;</span>,
 )
-print(top_up.newBalance)</code></pre></div>
+<span class="tok-bi">print</span>(top_up.newBalance)</code></pre></div>
 </article>
 
 <article class="op" id="op-transfer-between-subsidiary-accounts" data-operation="transfer-between-subsidiary-accounts" data-filter-item data-section="subsidiary" data-search="transfer between subsidiary accounts subsidiary accounts - transfer between accounts post /subsidiary-accounts/transfer subsidiary accounts transfer_between_subsidiary_accounts">
@@ -974,7 +974,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/transfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/transfer</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + sourceAccountIdentifier + destinationAccountIdentifier + amount + currency + narration</span>
@@ -983,12 +983,12 @@ print(top_up.newBalance)</code></pre></div>
   <ul><li>Paga sends one callback, for the source account only.</li></ul>
   <h4>Python</h4>
   <p><code>transfer_between_subsidiary_accounts</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-transfer-between-subsidiary-accounts" type="button">Copy</button><pre><code id="code-python-transfer-between-subsidiary-accounts" class="language-python">transfer = await client.transfer_between_subsidiary_accounts(
-    source_account_reference=&quot;CUST-000184-WALLET&quot;,
-    destination_account_reference=&quot;CUST-000221-WALLET&quot;,
-    reference_number=&quot;REF-TRANSFER-001&quot;,
-    amount=1500,
-    narration=&quot;Payment for goods&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-transfer-between-subsidiary-accounts" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-transfer-between-subsidiary-accounts" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">transfer_between_subsidiary_accounts</span>(
+    source_account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    destination_account_reference=<span class="tok-str">&quot;CUST-000221-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-TRANSFER-001&quot;</span>,
+    amount=<span class="tok-num">1500</span>,
+    narration=<span class="tok-str">&quot;Payment for goods&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -999,7 +999,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
@@ -1008,9 +1008,9 @@ print(top_up.newBalance)</code></pre></div>
   <ul><li>The <code>accountIdentifier</code> is the account's <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>retrieve_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-retrieve-subsidiary-account" type="button">Copy</button><pre><code id="code-python-retrieve-subsidiary-account" class="language-python">account = await client.retrieve_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-GET-001&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-retrieve-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-retrieve-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">retrieve_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-GET-001&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1021,7 +1021,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">PUT /subsidiary-accounts/{accountReference}</span>
+    <span class="tag tag-method tag-put">PUT</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier + iifiNumber + autoSweep.destination + autoSweep.bankPublicId + autoSweep.accountNumber + callbackUrl</span>
@@ -1031,10 +1031,10 @@ print(top_up.newBalance)</code></pre></div>
 <li><code>accountNumber</code> and <code>accountReference</code> cannot be changed.</li></ul>
   <h4>Python</h4>
   <p><code>update_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-update-subsidiary-account" type="button">Copy</button><pre><code id="code-python-update-subsidiary-account" class="language-python">account = await client.update_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-UPDATE-001&quot;,
-    status=&quot;DISABLED&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-update-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-update-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">update_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-UPDATE-001&quot;</span>,
+    status=<span class="tok-str">&quot;DISABLED&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1045,7 +1045,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}/balance</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/balance</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
@@ -1054,11 +1054,11 @@ print(top_up.newBalance)</code></pre></div>
   
   <h4>Python</h4>
   <p><code>get_subsidiary_balance</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-subsidiary-balance" type="button">Copy</button><pre><code id="code-python-get-subsidiary-balance" class="language-python">balance = await client.get_subsidiary_balance(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-BAL-001&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-subsidiary-balance" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-subsidiary-balance" class="language-python">balance = <span class="tok-kw">await</span> client.<span class="tok-fn">get_subsidiary_balance</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-BAL-001&quot;</span>,
 )
-print(balance.balance)</code></pre></div>
+<span class="tok-bi">print</span>(balance.balance)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-subsidiary-history" data-operation="get-subsidiary-history" data-filter-item data-section="subsidiary" data-search="get a subsidiary account history subsidiary accounts - get transaction history get /subsidiary-accounts/{accountreference}/history subsidiary accounts get_subsidiary_history">
@@ -1068,7 +1068,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}/history</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/history</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Subsidiary accounts</span>
     <span class="tag tag-endpoint">accountIdentifier + startDateTimeUTC + endDateTimeUTC</span>
@@ -1079,13 +1079,13 @@ print(balance.balance)</code></pre></div>
 <li><code>referenceNumber</code> is required as a query parameter, but is not part of the hash.</li></ul>
   <h4>Python</h4>
   <p><code>get_subsidiary_history</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-subsidiary-history" type="button">Copy</button><pre><code id="code-python-get-subsidiary-history" class="language-python">history = await client.get_subsidiary_history(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-HIS-001&quot;,
-    start_date_time_utc=&quot;2026-06-01T00:00:00&quot;,
-    end_date_time_utc=&quot;2026-06-30T23:59:59&quot;,
-    page_number=0,
-    page_size=20,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-subsidiary-history" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-subsidiary-history" class="language-python">history = <span class="tok-kw">await</span> client.<span class="tok-fn">get_subsidiary_history</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-HIS-001&quot;</span>,
+    start_date_time_utc=<span class="tok-str">&quot;2026-06-01T00:00:00&quot;</span>,
+    end_date_time_utc=<span class="tok-str">&quot;2026-06-30T23:59:59&quot;</span>,
+    page_number=<span class="tok-num">0</span>,
+    page_size=<span class="tok-num">20</span>,
 )</code></pre></div>
 </article>
 
@@ -1096,7 +1096,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /registerPersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerPersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Persistent accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference + financialIdentificationNumber + creditBankId + creditBankAccountNumber + callbackUrl</span>
@@ -1106,13 +1106,13 @@ print(balance.balance)</code></pre></div>
 <li>Paga calls your <code>callbackUrl</code> whenever the account is funded.</li></ul>
   <h4>Python</h4>
   <p><code>register_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-register-persistent-payment-account" class="language-python">account = await client.register_persistent_payment_account(
-    reference_number=&quot;REF-000006&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    financial_identification_number=&quot;22222132329&quot;,
-    credit_bank_id=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    credit_bank_account_number=&quot;0000000000&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">register_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000006&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    financial_identification_number=<span class="tok-str">&quot;22222132329&quot;</span>,
+    credit_bank_id=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    credit_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1123,7 +1123,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /updatePersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/updatePersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Persistent accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier + financialIdentificationNumber + creditBankId + creditBankAccountNumber + callbackUrl</span>
@@ -1132,10 +1132,10 @@ print(balance.balance)</code></pre></div>
   <ul><li>Every field takes part in the hash, so send the current value of the ones you are not changing.</li></ul>
   <h4>Python</h4>
   <p><code>update_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-update-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-update-persistent-payment-account" class="language-python">account = await client.update_persistent_payment_account(
-    reference_number=&quot;REF-000007&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga-v2&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-update-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-update-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">update_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000007&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga-v2&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1146,7 +1146,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /getPersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getPersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Persistent accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
@@ -1155,9 +1155,9 @@ print(balance.balance)</code></pre></div>
   <ul><li>The <code>accountIdentifier</code> accepts a NUBAN **or** an <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-get-persistent-payment-account" class="language-python">account = await client.get_persistent_payment_account(
-    reference_number=&quot;REF-000008&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">get_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000008&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1168,7 +1168,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /deletePersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/deletePersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag ">Persistent accounts</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
@@ -1177,9 +1177,9 @@ print(balance.balance)</code></pre></div>
   <ul><li>The <code>accountIdentifier</code> accepts a NUBAN **or** an <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>delete_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-delete-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-delete-persistent-payment-account" class="language-python">await client.delete_persistent_payment_account(
-    reference_number=&quot;REF-000009&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-delete-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-delete-persistent-payment-account" class="language-python"><span class="tok-kw">await</span> client.<span class="tok-fn">delete_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000009&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1190,7 +1190,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomer</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Customers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerFirstName + customerLastName</span>
@@ -1199,13 +1199,13 @@ print(balance.balance)</code></pre></div>
   <ul><li>The phone number must not already belong to a registered customer.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer" type="button">Copy</button><pre><code id="code-python-register-customer" class="language-python">customer = await client.register_customer(
-    reference_number=&quot;REF-000010&quot;,
-    customer_phone_number=&quot;08064343187&quot;,
-    customer_first_name=&quot;Bello&quot;,
-    customer_last_name=&quot;Ramon&quot;,
-    customer_email=&quot;customer@example.com&quot;,
-    customer_date_of_birth=&quot;1989-10-02&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer" class="language-python">customer = <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer</span>(
+    reference_number=<span class="tok-str">&quot;REF-000010&quot;</span>,
+    customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    customer_first_name=<span class="tok-str">&quot;Bello&quot;</span>,
+    customer_last_name=<span class="tok-str">&quot;Ramon&quot;</span>,
+    customer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    customer_date_of_birth=<span class="tok-str">&quot;1989-10-02&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -1216,7 +1216,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerWithKYC</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerWithKYC</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Customers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerFirstName + customerLastName</span>
@@ -1226,17 +1226,17 @@ print(balance.balance)</code></pre></div>
 <li>Each photograph must be a JPEG of at most 500 KB.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_with_kyc</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-with-kyc" type="button">Copy</button><pre><code id="code-python-register-customer-with-kyc" class="language-python">with open(&quot;account-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    customer = await client.register_customer_with_kyc(
-        reference_number=&quot;REF-000011&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_email=&quot;customer@example.com&quot;,
-        customer_first_name=&quot;Bello&quot;,
-        customer_last_name=&quot;Ramon&quot;,
-        customer_date_of_birth=&quot;1989-10-02&quot;,
-        customer_gender=&quot;MALE&quot;,
-        customer_account_photo=photo.read(),
-        customer_id_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-with-kyc" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-with-kyc" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;account-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    customer = <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_with_kyc</span>(
+        reference_number=<span class="tok-str">&quot;REF-000011&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+        customer_first_name=<span class="tok-str">&quot;Bello&quot;</span>,
+        customer_last_name=<span class="tok-str">&quot;Ramon&quot;</span>,
+        customer_date_of_birth=<span class="tok-str">&quot;1989-10-02&quot;</span>,
+        customer_gender=<span class="tok-str">&quot;MALE&quot;</span>,
+        customer_account_photo=photo.<span class="tok-fn">read</span>(),
+        customer_id_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 
@@ -1247,7 +1247,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerAccountPhoto</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerAccountPhoto</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Customers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber</span>
@@ -1257,11 +1257,11 @@ print(balance.balance)</code></pre></div>
 <li>The photograph must be a JPEG of at most 500 KB.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_account_photo</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-account-photo" type="button">Copy</button><pre><code id="code-python-register-customer-account-photo" class="language-python">with open(&quot;account-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    await client.register_customer_account_photo(
-        reference_number=&quot;REF-000012&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_account_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-account-photo" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-account-photo" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;account-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_account_photo</span>(
+        reference_number=<span class="tok-str">&quot;REF-000012&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_account_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 
@@ -1272,7 +1272,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag ">Business API</span>
-    <span class="tag tag-endpoint">POST /registerCustomerIdentification</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerCustomerIdentification</span>
     <span class="tag ">principal / credentials headers</span>
     <span class="tag ">Customers</span>
     <span class="tag tag-endpoint">referenceNumber + customerPhoneNumber + customerIdType + customerIdNumber + customerIdExpirationDate</span>
@@ -1282,14 +1282,14 @@ print(balance.balance)</code></pre></div>
 <li><code>customerIdExpirationDate</code> is formatted as <code>YYYY-MM-DD</code>.</li></ul>
   <h4>Python</h4>
   <p><code>register_customer_identification</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-customer-identification" type="button">Copy</button><pre><code id="code-python-register-customer-identification" class="language-python">with open(&quot;id-photo.jpg&quot;, &quot;rb&quot;) as photo:
-    await client.register_customer_identification(
-        reference_number=&quot;REF-000013&quot;,
-        customer_phone_number=&quot;08064343187&quot;,
-        customer_id_type=&quot;NATIONAL_ID&quot;,
-        customer_id_number=&quot;12345678901&quot;,
-        customer_id_expiration_date=&quot;2030-01-01&quot;,
-        customer_id_photo=photo.read(),
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-customer-identification" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-customer-identification" class="language-python"><span class="tok-kw">with</span> <span class="tok-bi">open</span>(<span class="tok-str">&quot;id-photo.jpg&quot;</span>, <span class="tok-str">&quot;rb&quot;</span>) <span class="tok-kw">as</span> photo:
+    <span class="tok-kw">await</span> client.<span class="tok-fn">register_customer_identification</span>(
+        reference_number=<span class="tok-str">&quot;REF-000013&quot;</span>,
+        customer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+        customer_id_type=<span class="tok-str">&quot;NATIONAL_ID&quot;</span>,
+        customer_id_number=<span class="tok-str">&quot;12345678901&quot;</span>,
+        customer_id_expiration_date=<span class="tok-str">&quot;2030-01-01&quot;</span>,
+        customer_id_photo=photo.<span class="tok-fn">read</span>(),
     )</code></pre></div>
 </article>
 </div>

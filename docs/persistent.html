@@ -58,6 +58,16 @@
 
 <p>A persistent payment account is the customer-side equivalent of a direct debit mandate, but from the collection side: the customer authorises a debit, you keep taking it.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-register-persistent-payment-account">Register a persistent payment account</a></li>
+    <li><a href="#op-update-persistent-payment-account">Update a persistent payment account</a></li>
+    <li><a href="#op-get-persistent-payment-account">Get a persistent payment account</a></li>
+    <li><a href="#op-delete-persistent-payment-account">Delete a persistent payment account</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-register-persistent-payment-account" data-operation="register-persistent-payment-account">
   <div class="op-header">
@@ -66,7 +76,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /registerPersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/registerPersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference + financialIdentificationNumber + creditBankId + creditBankAccountNumber + callbackUrl</span>
   </div>
@@ -75,13 +85,13 @@
 <li>Paga calls your <code>callbackUrl</code> whenever the account is funded.</li></ul>
   <h4>Python</h4>
   <p><code>register_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-register-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-register-persistent-payment-account" class="language-python">account = await client.register_persistent_payment_account(
-    reference_number=&quot;REF-000006&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    financial_identification_number=&quot;22222132329&quot;,
-    credit_bank_id=&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;,
-    credit_bank_account_number=&quot;0000000000&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-register-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-register-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">register_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000006&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    financial_identification_number=<span class="tok-str">&quot;22222132329&quot;</span>,
+    credit_bank_id=<span class="tok-str">&quot;40090E2F-7446-4217-9345-7BBAB7043C4C&quot;</span>,
+    credit_bank_account_number=<span class="tok-str">&quot;0000000000&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -92,7 +102,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /updatePersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/updatePersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier + financialIdentificationNumber + creditBankId + creditBankAccountNumber + callbackUrl</span>
   </div>
@@ -100,10 +110,10 @@
   <ul><li>Every field takes part in the hash, so send the current value of the ones you are not changing.</li></ul>
   <h4>Python</h4>
   <p><code>update_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-update-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-update-persistent-payment-account" class="language-python">account = await client.update_persistent_payment_account(
-    reference_number=&quot;REF-000007&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga-v2&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-update-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-update-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">update_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000007&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga-v2&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -114,7 +124,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /getPersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getPersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
   </div>
@@ -122,9 +132,9 @@
   <ul><li>The <code>accountIdentifier</code> accepts a NUBAN **or** an <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-get-persistent-payment-account" class="language-python">account = await client.get_persistent_payment_account(
-    reference_number=&quot;REF-000008&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-persistent-payment-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">get_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000008&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -135,7 +145,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /deletePersistentPaymentAccount</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/deletePersistentPaymentAccount</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
   </div>
@@ -143,9 +153,9 @@
   <ul><li>The <code>accountIdentifier</code> accepts a NUBAN **or** an <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>delete_persistent_payment_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-delete-persistent-payment-account" type="button">Copy</button><pre><code id="code-python-delete-persistent-payment-account" class="language-python">await client.delete_persistent_payment_account(
-    reference_number=&quot;REF-000009&quot;,
-    account_identifier=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-delete-persistent-payment-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-delete-persistent-payment-account" class="language-python"><span class="tok-kw">await</span> client.<span class="tok-fn">delete_persistent_payment_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000009&quot;</span>,
+    account_identifier=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 

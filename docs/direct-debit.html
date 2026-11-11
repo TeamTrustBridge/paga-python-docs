@@ -58,6 +58,18 @@
 
 <p>Direct Debit lets a customer authorise you to debit their bank account. You set the mandate up, wait for the bank to approve it, then charge it as often as the mandate allows.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-start-direct-debit-session">Start a hosted set-up session</a></li>
+    <li><a href="#op-create-direct-debit-mandate">Set up a mandate by API</a></li>
+    <li><a href="#op-get-mandate-status">Check mandate status</a></li>
+    <li><a href="#op-charge-mandate">Charge the mandate</a></li>
+    <li><a href="#op-get-charge-mandate-status">Check charge status</a></li>
+    <li><a href="#op-disable-mandate">Disable a mandate</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-start-direct-debit-session" data-operation="start-direct-debit-session">
   <div class="op-header">
@@ -66,7 +78,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /checkout/charge-process/start</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/checkout/charge-process/start</span>
     <span class="tag ">HTTP Basic</span>
     
   </div>
@@ -74,13 +86,13 @@
   <ul><li>The session expiry and payment expiry are strings of seconds.</li></ul>
   <h4>Python</h4>
   <p><code>start_direct_debit_session</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-start-direct-debit-session" type="button">Copy</button><pre><code id="code-python-start-direct-debit-session" class="language-python">session = await client.start_direct_debit_session(
-    reference_number=&quot;DD-2026-0001&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    amount_limit=50000,
-    callback_url=&quot;https://yourstore.com/webhooks/mandate&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-start-direct-debit-session" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-start-direct-debit-session" class="language-python">session = <span class="tok-kw">await</span> client.<span class="tok-fn">start_direct_debit_session</span>(
+    reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    amount_limit=<span class="tok-num">50000</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/mandate&quot;</span>,
 )
-print(session.checkoutUrl)</code></pre></div>
+<span class="tok-bi">print</span>(session.checkoutUrl)</code></pre></div>
 </article>
 
 <article class="op" id="op-create-direct-debit-mandate" data-operation="create-direct-debit-mandate">
@@ -90,7 +102,7 @@ print(session.checkoutUrl)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /paymentRequest</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/paymentRequest</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + payer.phoneNumber + payer.email</span>
   </div>
@@ -99,15 +111,15 @@ print(session.checkoutUrl)</code></pre></div>
 <li><code>payerCollectionFeeShare</code> and <code>payeeCollectionFeeShare</code> must sum to 1.0.</li></ul>
   <h4>Python</h4>
   <p><code>create_direct_debit_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-direct-debit-mandate" type="button">Copy</button><pre><code id="code-python-create-direct-debit-mandate" class="language-python">mandate = await client.create_direct_debit_mandate(
-    reference_number=&quot;DD-2026-0001&quot;,
-    amount=5000,
-    payer_name=&quot;Bello Ramon&quot;,
-    payer_phone_number=&quot;08064343187&quot;,
-    payee_name=&quot;Your business name&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    payer_email=&quot;customer@example.com&quot;,
-    call_back_url=&quot;https://yourstore.com/webhooks/mandate&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-direct-debit-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-direct-debit-mandate" class="language-python">mandate = <span class="tok-kw">await</span> client.<span class="tok-fn">create_direct_debit_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>,
+    amount=<span class="tok-num">5000</span>,
+    payer_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    payer_phone_number=<span class="tok-str">&quot;08064343187&quot;</span>,
+    payee_name=<span class="tok-str">&quot;Your business name&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    payer_email=<span class="tok-str">&quot;customer@example.com&quot;</span>,
+    call_back_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/mandate&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -118,7 +130,7 @@ print(session.checkoutUrl)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -127,9 +139,9 @@ print(session.checkoutUrl)</code></pre></div>
 <li>Read <code>data.additionalData.mandate[].ProcessStatusId</code> instead: <code>PENDING</code>, <code>VERIFIED</code>, <code>APPROVED</code> or <code>REJECTED</code>. Charge only when it is <code>APPROVED</code>.</li></ul>
   <h4>Python</h4>
   <p><code>get_mandate_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-mandate-status" type="button">Copy</button><pre><code id="code-python-get-mandate-status" class="language-python">status = await client.get_mandate_status(reference_number=&quot;DD-2026-0001&quot;)
-if status.isApproved:
-    print(&quot;ready to charge&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-mandate-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-mandate-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_mandate_status</span>(reference_number=<span class="tok-str">&quot;DD-2026-0001&quot;</span>)
+<span class="tok-kw">if</span> status.isApproved:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;ready to charge&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-charge-mandate" data-operation="charge-mandate">
@@ -139,7 +151,7 @@ if status.isApproved:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /chargeDebitMandate</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/chargeDebitMandate</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + amount + accountReference</span>
   </div>
@@ -147,10 +159,10 @@ if status.isApproved:
   <ul><li>A successful response means the charge was **accepted**, not completed — fulfil only once the charge callback confirms it.</li></ul>
   <h4>Python</h4>
   <p><code>charge_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-charge-mandate" type="button">Copy</button><pre><code id="code-python-charge-mandate" class="language-python">charge = await client.charge_mandate(
-    reference_number=&quot;DD-CHARGE-0001&quot;,
-    amount=600,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-charge-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-charge-mandate" class="language-python">charge = <span class="tok-kw">await</span> client.<span class="tok-fn">charge_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-CHARGE-0001&quot;</span>,
+    amount=<span class="tok-num">600</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -161,7 +173,7 @@ if status.isApproved:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /getChargeMandateStatus</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/getChargeMandateStatus</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -169,9 +181,9 @@ if status.isApproved:
   <ul><li><code>data.statusCode</code> is <code>0</code> charged, <code>1</code> pending, <code>-1</code> invalid and <code>-4</code> unknown.</li></ul>
   <h4>Python</h4>
   <p><code>get_charge_mandate_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-charge-mandate-status" type="button">Copy</button><pre><code id="code-python-get-charge-mandate-status" class="language-python">status = await client.get_charge_mandate_status(reference_number=&quot;DD-CHARGE-0001&quot;)
-if status.chargeStatus == 0:
-    print(&quot;charged&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-charge-mandate-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-charge-mandate-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_charge_mandate_status</span>(reference_number=<span class="tok-str">&quot;DD-CHARGE-0001&quot;</span>)
+<span class="tok-kw">if</span> status.chargeStatus == <span class="tok-num">0</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;charged&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-disable-mandate" data-operation="disable-mandate">
@@ -181,7 +193,7 @@ if status.chargeStatus == 0:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /disableMandate</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/disableMandate</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference</span>
   </div>
@@ -189,9 +201,9 @@ if status.chargeStatus == 0:
   
   <h4>Python</h4>
   <p><code>disable_mandate</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-disable-mandate" type="button">Copy</button><pre><code id="code-python-disable-mandate" class="language-python">await client.disable_mandate(
-    reference_number=&quot;DD-DIS-0001&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-disable-mandate" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-disable-mandate" class="language-python"><span class="tok-kw">await</span> client.<span class="tok-fn">disable_mandate</span>(
+    reference_number=<span class="tok-str">&quot;DD-DIS-0001&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
 )</code></pre></div>
 </article>
 

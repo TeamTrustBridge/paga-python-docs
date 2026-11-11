@@ -58,6 +58,20 @@
 
 <p>A subsidiary account is a Paga account for one of your customers. You can hold their money, move it between accounts, and set it up to sweep straight into a bank account.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-create-subsidiary-account">Create a subsidiary account</a></li>
+    <li><a href="#op-charge-subsidiary-account">Charge a subsidiary account</a></li>
+    <li><a href="#op-top-up-subsidiary-account">Top up a subsidiary account</a></li>
+    <li><a href="#op-transfer-between-subsidiary-accounts">Transfer between subsidiary accounts</a></li>
+    <li><a href="#op-retrieve-subsidiary-account">Retrieve a subsidiary account</a></li>
+    <li><a href="#op-update-subsidiary-account">Update a subsidiary account</a></li>
+    <li><a href="#op-get-subsidiary-balance">Get a subsidiary account balance</a></li>
+    <li><a href="#op-get-subsidiary-history">Get a subsidiary account history</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-create-subsidiary-account" data-operation="create-subsidiary-account">
   <div class="op-header">
@@ -66,7 +80,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountReference + iifiNumber + autoSweep.bankPublicId + autoSweep.destination + autoSweep.accountNumber + callbackUrl</span>
   </div>
@@ -75,15 +89,15 @@
 <li>Reusing a <code>referenceNumber</code> or <code>accountReference</code> returns status code <code>102</code> and never creates a second account.</li></ul>
   <h4>Python</h4>
   <p><code>create_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-create-subsidiary-account" type="button">Copy</button><pre><code id="code-python-create-subsidiary-account" class="language-python">account = await client.create_subsidiary_account(
-    reference_number=&quot;REF-000005&quot;,
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    account_name=&quot;Bello Ramon&quot;,
-    iifi_number=&quot;22222132329&quot;,
-    callback_url=&quot;https://yourstore.com/webhooks/paga&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-create-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-create-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">create_subsidiary_account</span>(
+    reference_number=<span class="tok-str">&quot;REF-000005&quot;</span>,
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    account_name=<span class="tok-str">&quot;Bello Ramon&quot;</span>,
+    iifi_number=<span class="tok-str">&quot;22222132329&quot;</span>,
+    callback_url=<span class="tok-str">&quot;https://yourstore.com/webhooks/paga&quot;</span>,
 )
-if account.statusCode == &quot;102&quot;:
-    print(&quot;duplicate reference&quot;)</code></pre></div>
+<span class="tok-kw">if</span> account.statusCode == <span class="tok-str">&quot;102&quot;</span>:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;duplicate reference&quot;</span>)</code></pre></div>
 </article>
 
 <article class="op" id="op-charge-subsidiary-account" data-operation="charge-subsidiary-account">
@@ -93,7 +107,7 @@ if account.statusCode == &quot;102&quot;:
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/{accountReference}/charge</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/charge</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + narration</span>
   </div>
@@ -102,13 +116,13 @@ if account.statusCode == &quot;102&quot;:
 <li>Retrying with the same <code>referenceNumber</code> never moves money twice.</li></ul>
   <h4>Python</h4>
   <p><code>charge_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-charge-subsidiary-account" type="button">Copy</button><pre><code id="code-python-charge-subsidiary-account" class="language-python">charge = await client.charge_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-CHARGE-001&quot;,
-    amount=1000,
-    narration=&quot;Service fee&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-charge-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-charge-subsidiary-account" class="language-python">charge = <span class="tok-kw">await</span> client.<span class="tok-fn">charge_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-CHARGE-001&quot;</span>,
+    amount=<span class="tok-num">1000</span>,
+    narration=<span class="tok-str">&quot;Service fee&quot;</span>,
 )
-print(charge.newBalance)</code></pre></div>
+<span class="tok-bi">print</span>(charge.newBalance)</code></pre></div>
 </article>
 
 <article class="op" id="op-top-up-subsidiary-account" data-operation="top-up-subsidiary-account">
@@ -118,7 +132,7 @@ print(charge.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/{accountReference}/topup</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/topup</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + amount + currency + narration</span>
   </div>
@@ -126,13 +140,13 @@ print(charge.newBalance)</code></pre></div>
   <ul><li>Not available on virtual accounts.</li></ul>
   <h4>Python</h4>
   <p><code>top_up_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-top-up-subsidiary-account" type="button">Copy</button><pre><code id="code-python-top-up-subsidiary-account" class="language-python">top_up = await client.top_up_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-TOPUP-001&quot;,
-    amount=500,
-    narration=&quot;Bonus credit&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-top-up-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-top-up-subsidiary-account" class="language-python">top_up = <span class="tok-kw">await</span> client.<span class="tok-fn">top_up_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-TOPUP-001&quot;</span>,
+    amount=<span class="tok-num">500</span>,
+    narration=<span class="tok-str">&quot;Bonus credit&quot;</span>,
 )
-print(top_up.newBalance)</code></pre></div>
+<span class="tok-bi">print</span>(top_up.newBalance)</code></pre></div>
 </article>
 
 <article class="op" id="op-transfer-between-subsidiary-accounts" data-operation="transfer-between-subsidiary-accounts">
@@ -142,7 +156,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /subsidiary-accounts/transfer</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/subsidiary-accounts/transfer</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + sourceAccountIdentifier + destinationAccountIdentifier + amount + currency + narration</span>
   </div>
@@ -150,12 +164,12 @@ print(top_up.newBalance)</code></pre></div>
   <ul><li>Paga sends one callback, for the source account only.</li></ul>
   <h4>Python</h4>
   <p><code>transfer_between_subsidiary_accounts</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-transfer-between-subsidiary-accounts" type="button">Copy</button><pre><code id="code-python-transfer-between-subsidiary-accounts" class="language-python">transfer = await client.transfer_between_subsidiary_accounts(
-    source_account_reference=&quot;CUST-000184-WALLET&quot;,
-    destination_account_reference=&quot;CUST-000221-WALLET&quot;,
-    reference_number=&quot;REF-TRANSFER-001&quot;,
-    amount=1500,
-    narration=&quot;Payment for goods&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-transfer-between-subsidiary-accounts" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-transfer-between-subsidiary-accounts" class="language-python">transfer = <span class="tok-kw">await</span> client.<span class="tok-fn">transfer_between_subsidiary_accounts</span>(
+    source_account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    destination_account_reference=<span class="tok-str">&quot;CUST-000221-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-TRANSFER-001&quot;</span>,
+    amount=<span class="tok-num">1500</span>,
+    narration=<span class="tok-str">&quot;Payment for goods&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -166,7 +180,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
   </div>
@@ -174,9 +188,9 @@ print(top_up.newBalance)</code></pre></div>
   <ul><li>The <code>accountIdentifier</code> is the account's <code>accountReference</code>.</li></ul>
   <h4>Python</h4>
   <p><code>retrieve_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-retrieve-subsidiary-account" type="button">Copy</button><pre><code id="code-python-retrieve-subsidiary-account" class="language-python">account = await client.retrieve_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-GET-001&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-retrieve-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-retrieve-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">retrieve_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-GET-001&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -187,7 +201,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">PUT /subsidiary-accounts/{accountReference}</span>
+    <span class="tag tag-method tag-put">PUT</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier + iifiNumber + autoSweep.destination + autoSweep.bankPublicId + autoSweep.accountNumber + callbackUrl</span>
   </div>
@@ -196,10 +210,10 @@ print(top_up.newBalance)</code></pre></div>
 <li><code>accountNumber</code> and <code>accountReference</code> cannot be changed.</li></ul>
   <h4>Python</h4>
   <p><code>update_subsidiary_account</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-update-subsidiary-account" type="button">Copy</button><pre><code id="code-python-update-subsidiary-account" class="language-python">account = await client.update_subsidiary_account(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-UPDATE-001&quot;,
-    status=&quot;DISABLED&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-update-subsidiary-account" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-update-subsidiary-account" class="language-python">account = <span class="tok-kw">await</span> client.<span class="tok-fn">update_subsidiary_account</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-UPDATE-001&quot;</span>,
+    status=<span class="tok-str">&quot;DISABLED&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -210,7 +224,7 @@ print(top_up.newBalance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}/balance</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/balance</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + accountIdentifier</span>
   </div>
@@ -218,11 +232,11 @@ print(top_up.newBalance)</code></pre></div>
   
   <h4>Python</h4>
   <p><code>get_subsidiary_balance</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-subsidiary-balance" type="button">Copy</button><pre><code id="code-python-get-subsidiary-balance" class="language-python">balance = await client.get_subsidiary_balance(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-BAL-001&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-subsidiary-balance" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-subsidiary-balance" class="language-python">balance = <span class="tok-kw">await</span> client.<span class="tok-fn">get_subsidiary_balance</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-BAL-001&quot;</span>,
 )
-print(balance.balance)</code></pre></div>
+<span class="tok-bi">print</span>(balance.balance)</code></pre></div>
 </article>
 
 <article class="op" id="op-get-subsidiary-history" data-operation="get-subsidiary-history">
@@ -232,7 +246,7 @@ print(balance.balance)</code></pre></div>
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">GET /subsidiary-accounts/{accountReference}/history</span>
+    <span class="tag tag-method tag-get">GET</span><span class="tag tag-endpoint">/subsidiary-accounts/{accountReference}/history</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">accountIdentifier + startDateTimeUTC + endDateTimeUTC</span>
   </div>
@@ -242,13 +256,13 @@ print(balance.balance)</code></pre></div>
 <li><code>referenceNumber</code> is required as a query parameter, but is not part of the hash.</li></ul>
   <h4>Python</h4>
   <p><code>get_subsidiary_history</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-subsidiary-history" type="button">Copy</button><pre><code id="code-python-get-subsidiary-history" class="language-python">history = await client.get_subsidiary_history(
-    account_reference=&quot;CUST-000184-WALLET&quot;,
-    reference_number=&quot;REF-HIS-001&quot;,
-    start_date_time_utc=&quot;2026-06-01T00:00:00&quot;,
-    end_date_time_utc=&quot;2026-06-30T23:59:59&quot;,
-    page_number=0,
-    page_size=20,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-subsidiary-history" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-subsidiary-history" class="language-python">history = <span class="tok-kw">await</span> client.<span class="tok-fn">get_subsidiary_history</span>(
+    account_reference=<span class="tok-str">&quot;CUST-000184-WALLET&quot;</span>,
+    reference_number=<span class="tok-str">&quot;REF-HIS-001&quot;</span>,
+    start_date_time_utc=<span class="tok-str">&quot;2026-06-01T00:00:00&quot;</span>,
+    end_date_time_utc=<span class="tok-str">&quot;2026-06-30T23:59:59&quot;</span>,
+    page_number=<span class="tok-num">0</span>,
+    page_size=<span class="tok-num">20</span>,
 )</code></pre></div>
 </article>
 

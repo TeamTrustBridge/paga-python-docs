@@ -58,6 +58,14 @@
 
 <p>A refund returns money to the customer. Cancelling a payment request that has not been paid uses the same endpoint — Paga decides which it is from the request's state.</p>
 
+<nav class="toc" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul>
+    <li><a href="#op-refund-payment">Refund or cancel a payment request</a></li>
+    <li><a href="#op-get-refund-status">Check refund status</a></li>
+  </ul>
+</nav>
+
 <h2 id="operations">Operations</h2>
 <article class="op" id="op-refund-payment" data-operation="refund-payment">
   <div class="op-header">
@@ -66,7 +74,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /refund/v2</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/refund/v2</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber + refundAmount</span>
   </div>
@@ -75,11 +83,11 @@
 <li>Reusing a <code>referenceNumber</code> returns status code <code>102</code> and never refunds twice.</li></ul>
   <h4>Python</h4>
   <p><code>refund_payment</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-refund-payment" type="button">Copy</button><pre><code id="code-python-refund-payment" class="language-python">refund = await client.refund_payment(
-    reference_number=&quot;RFD-2026-0031&quot;,
-    payment_request_reference=&quot;ORD-2026-0187&quot;,
-    refund_amount=50,
-    reason=&quot;Item out of stock&quot;,
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-refund-payment" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-refund-payment" class="language-python">refund = <span class="tok-kw">await</span> client.<span class="tok-fn">refund_payment</span>(
+    reference_number=<span class="tok-str">&quot;RFD-2026-0031&quot;</span>,
+    payment_request_reference=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>,
+    refund_amount=<span class="tok-num">50</span>,
+    reason=<span class="tok-str">&quot;Item out of stock&quot;</span>,
 )</code></pre></div>
 </article>
 
@@ -90,7 +98,7 @@
   </div>
   <div class="meta">
     <span class="tag tag-collect">Collect API</span>
-    <span class="tag tag-endpoint">POST /status</span>
+    <span class="tag tag-method tag-post">POST</span><span class="tag tag-endpoint">/status</span>
     <span class="tag ">HTTP Basic</span>
     <span class="tag tag-endpoint">referenceNumber</span>
   </div>
@@ -98,9 +106,9 @@
   <ul><li><code>data.refundStatus</code> becomes <code>&quot;refunded&quot;</code> once the refund is made.</li></ul>
   <h4>Python</h4>
   <p><code>get_refund_status</code></p>
-  <div class="code-block"><button class="button" data-copy="#code-python-get-refund-status" type="button">Copy</button><pre><code id="code-python-get-refund-status" class="language-python">status = await client.get_refund_status(reference_number=&quot;ORD-2026-0187&quot;)
-if status.isRefunded:
-    print(&quot;refunded&quot;)</code></pre></div>
+  <div class="code-block"><button class="button copy-button" data-copy="#code-python-get-refund-status" type="button" aria-label="Copy this sample to the clipboard">Copy</button><pre><code id="code-python-get-refund-status" class="language-python">status = <span class="tok-kw">await</span> client.<span class="tok-fn">get_refund_status</span>(reference_number=<span class="tok-str">&quot;ORD-2026-0187&quot;</span>)
+<span class="tok-kw">if</span> status.isRefunded:
+    <span class="tok-bi">print</span>(<span class="tok-str">&quot;refunded&quot;</span>)</code></pre></div>
 </article>
 
 <h2 id="next">Next</h2>
